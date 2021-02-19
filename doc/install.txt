@@ -1,0 +1,27 @@
+Többé-kevésbé ennek alapján:
+https://www.soengsouy.com/2020/12/login-with-laravel-8-and-socialite.html
+(ez az anyag tartalmazza a google,facebook, github -on végzendő beállítások leirását is)
+
+cd ..... (ez alá fog létrejönni a LaravelSocialite könyvtár)
+composer create-project --prefer-dist laravel/laravel LaravelSocialite 
+cd LaravelSocialite
+
+	.env file editálása (mysql access, smtp access  és sociál login access)
+
+composer require laravel/ui
+npm run dev   (hibákat dob, de úgy látom ennek ellenére müködik a dolog)
+php artisan ui:auth (minden kérdésre yes válasz)
+composer require laravel/socialite
+php artisan make:controller LoginController
+
+	config/services.php javitása
+	database/migration/.....create_users_table.php javitása a fenti linkben lévőre
+
+php artisan migrate
+
+	app/routes/web.php javitása  a fenti linkben lévőre
+	
+	app/Http/Controllers/auth/LoginConbtroller.php javitása  a fenti linkben lévőre
+
+utopszkij@ROBITC:/var/www/html/LaravelSocialite$ php artisan serve
+
