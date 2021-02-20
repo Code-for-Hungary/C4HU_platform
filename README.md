@@ -28,18 +28,25 @@ A weboldalon a regisztrált önkéntesek listája is böngészhető, publikus pr
 
 A weboldal elsősorban desctop/laptop/table használatra legyen optimalizálva, persze azért a telon -való használatot sem kizárva.
 
-Sotware: Laravel alapon készül. lásd: [laravel-readme.md](laravel-readme.md) és [laravel.com](laravel.com)
+Sotware: Laravel  8.28.1 alapon készül. lásd: [laravel-readme.md](laravel-readme.md) és [laravel.com](http://laravel.com)
 
-További felhasznált szellemi termékek: [jQuery](jquery.com), [bootstrap](https://getbootstrap.com/), [Awesore fonts](https://fontawesome.com/),
-[pixabay](https://pixabay.com/),  [gravatar](gravatar.com), [facebook](facebook.com), [google](google.com), [github](github.com)
+További felhasznált szellemi termékek: [jQuery](http://jquery.com), [bootstrap](https://getbootstrap.com/), [Awesore fonts](https://fontawesome.com/),
+[pixabay](https://pixabay.com/),  [gravatar](http://gravatar.com), [facebook](http://facebook.com), [google](http://google.com), [github](http://github.com)
 
 ## Licensz
 
 [MIT license](https://opensource.org/licenses/MIT).
 
+## A repo clonozása utáni teendők
+
+mysql adatbázis létrehozása utf8mb4-hungaian_ci default rendezéssel
+
+.env file editásása (mysql elérés, smtp elérés, opcionálisan github, facebook, google login konfig)
+
+php artisan migrate
+
 ## lokális teszt futtatás
 ```
-cd public
 php artisan serve
 ```
 ## Feltöltés WEB szerverre
@@ -61,7 +68,7 @@ upload ennek a reponak a  **public** könyvtárát a **public_html** -be
 
 upload ennek a reponak a többi könyvtárát változatlan néven a web szerverre (a fent megadott könyvtár szerkezetbe)
 
-edit bootstrap/paths.php     a **publik* a **public_html**  -re mutassan
+edit bootstrap/paths.php     a **publik** a **public_html**  -re mutassan
 
 # project alapja 
 [https://www.soengsouy.com/2020/12/login-with-laravel-8-and-socialite.html](https://www.soengsouy.com/2020/12/login-with-laravel-8-and-socialite.html)
@@ -92,5 +99,5 @@ php artisan migrate
 
 edit app/Http/Controllers/auth/LoginConbtroller.php (lásd a fenti bázis url -ben)
 
-copy az új és modositott fájlokat ebből a repo ból a **resources, routes, app ** könyvtárakba
+copy az új és modositott fájlokat ebből a repo ból a **resources, routes, app** könyvtárakba
 
