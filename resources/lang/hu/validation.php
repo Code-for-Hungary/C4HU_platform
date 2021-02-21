@@ -13,16 +13,16 @@ return [
     |
     */
 
-    'accepted' => 'The :attribute must be accepted.',
-    'active_url' => 'The :attribute is not a valid URL.',
-    'after' => 'The :attribute must be a date after :date.',
-    'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
-    'alpha' => 'The :attribute may only contain letters.',
-    'alpha_dash' => 'The :attribute may only contain letters, numbers, dashes and underscores.',
-    'alpha_num' => 'The :attribute may only contain letters and numbers.',
-    'array' => 'The :attribute must be an array.',
-    'before' => 'The :attribute must be a date before :date.',
-    'before_or_equal' => 'The :attribute must be a date before or equal to :date.',
+    'accepted' => 'A(z) :attribute -t el kell fogadni.',
+    'active_url' => 'A :attribute nem egy valós web cím.',
+    'after' => 'A(z) :attribute -nak nagyobbnak kell lennie :date -nál.',
+    'after_or_equal' => 'A(z) :attribute nagyobbnak vagy egyenlőnek kell lennie mint :date.',
+    'alpha' => 'A(z) :attribute csak betüket tartalmazhat.',
+    'alpha_dash' => 'A(z) :attribute csak betüket, számokat, kötöjeleket és aláhuzás jeleket tartalmazhat.',
+    'alpha_num' => 'A(z) :attribute csak betüket és számokat tartalmazhat.',
+    'array' => 'A(z) :attribute csak egy tömb lehet.',
+    'before' => 'A(z) :attribute kissebbnek kell lennie mint :date.',
+    'before_or_equal' => 'A(z) :attribute kissebbnek vagy egyenlőnek kell lennie mint :date.',
     'between' => [
         'numeric' => 'The :attribute must be between :min and :max.',
         'file' => 'The :attribute must be between :min and :max kilobytes.',

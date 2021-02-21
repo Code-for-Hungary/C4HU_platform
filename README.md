@@ -10,7 +10,7 @@ Chat: [https://codeforhungary.slack.com/archives/C01MV5D61C5](https://codeforhun
 
 NGO -k új web oldalainak kialakításához, meglévő  web oldalainak fejlesztéséhez, üzemeltetéséhez önkéntesek toborzása, támogatás nyújtása. Az igények és a jelentkező önkéntesek egymásra találásának elősegítése.
 
-![Logo](public/images/logo.png){height=300}
+![Logo](public/images/logo.png)
 
 ## Áttekintés
 
@@ -77,7 +77,7 @@ edit bootstrap/paths.php     a **publik** a **public_html**  -re mutassan
 
 (ez a link tartalmazza  a  facebook, goggle, github konfigurálási utmutatót is)
 
-## A projekt előállítása a bázis laravel -ből kiindulval
+## A projekt előállítása a bázis laravel -ből kiindulva
 ```
 composer create-project --prefer-dist laravel/laravel LaravelSocialite 
 cd LaravelSocialite

@@ -14,6 +14,9 @@ body {
 #app .navbar-nav .nav-subitem {width:100%; display:block; padding:1px}
 #app .navbar-nav .nav-item:hover {background-color:#ceefee}
 #app .navbar-nav .nav-subitem:hover {background-color:#ceefee}
+#app .pageBody {min-height:200px}
+#app .footer {min-height:100px; margin-top:5px; 
+	border-style:solid; border-width:2px 0px 0px 0px; background-color:silver}
 
 #app .btn { border-style:solid; border-width:1px; border-color: #808080; width:auto}
 #app .dropdown-menu {padding:4px 4px 4px 4px}
@@ -31,4 +34,25 @@ body {
 
 @media (min-width: 768px) {
 	#app .navbar-toggler {display:none} 
-}
+	
+@media (min-height: 800px) {
+	#app .pageBody {min-height: 600px}
+}	
+@media (min-height: 1000px) {
+	#app .pageBody {min-height: 600px}
+}	
+@media (min-height: 1200px) {
+	#app .pageBody {min-height: 800px}
+}	
+@media (min-height: 1400px) {
+	#app .pageBody {min-height: 1000px}
+}	
+@media (min-height: 1600px) {
+	#app .pageBody {min-height: 1200px}
+}	
+@media (min-height: 1800px) {
+	#app .pageBody {min-height: 1400px}
+}	
+@media (min-height: 2000px) {
+	#app .pageBody {min-height: 1600px}
+}	

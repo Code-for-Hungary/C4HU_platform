@@ -23,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+    	$result = view('welcome');	
+    	if (\Auth::user()) {
+    		$user = \Auth::user();
+    		if ((!isset($user->email_verified_at)) | ($user->email_verified_at == '')) {    			
+    			$result = redirect('/emailverifyform');		
+    		}
+    	}	 
+        return $result;
     }
 }

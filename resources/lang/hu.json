@@ -1,0 +1,10 @@
+{
+	"Reset Password Notification": "Új jelszó kérés",
+	"You are receiving this email because we received a password reset request for your account.": "Új jelszó kérést kezdeményeztél",
+	"Reset Password": "Új jelszót kérek",
+	"This password reset link will expire in :count minutes.": "Ez a link csak :count pervcen belül használható", 
+	"If you did not request a password reset, no further action is required.": "Ha nem te kezdeményezted az új jelszó kérést, akkor nem kell tenned semmit, a jelszó nem változik.",
+	"Dashboard": "Vezérlő pult",
+	"You are logged in!": "Be vagy jelentkezve!",
+	"underConstruction": "Még nincs kész, dolgozunk rajta....."
+}

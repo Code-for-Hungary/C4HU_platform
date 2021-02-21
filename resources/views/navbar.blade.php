@@ -76,6 +76,11 @@
   </div>
   
 </nav>
+@if (isset($msg))
+	<div class="alert {{ $msgClass ?? '' }}"> 
+    	{{ $msg ?? '' }}
+	</div>	
+@endif
 <div style="display:none">
 	<form id="logoutForm" method="post" action="/logout">
 		@csrf

@@ -9,5 +9,10 @@ return [
 	"SocialLogin" => "Alternativ belépési lehetőségek",
 	"ForgetPassword" => "Elfelejtettem a jelszavam",
 	"ResendActivateEmail" => "Aktiváló E-mail újra küldése",
-	"emailSended" => "Levél elküldve"
+	"emailSended" => "Levél elküldve",
+	"ResetPassword" => "Új jelszó megadása",
+	"Email" => "E-mail cím",
+	"Password" => "Jelszó",
+	"ConformPassword" => "Jelszó újra",
+	"SendPasswordResetLink" => "Új jelszó igénylő link küldése E-mailben"
 ];

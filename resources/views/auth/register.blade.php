@@ -6,7 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center">
-                	<img src="images/logo.png" class="logo"> 
+		        	<h2>{{ env('APP_NAME') }}</h2>
+                	<img src="/images/logo.png" class="logo"> 
                 	<h2>{{ __('regist.Register') }}</h2>
                 </div>
 

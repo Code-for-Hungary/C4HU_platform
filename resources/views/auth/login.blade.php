@@ -9,6 +9,7 @@
                 </a>
             </div>
             <div class="text-center mb-4">
+	        	<h2>{{ env('APP_NAME') }}</h2>
                 <h1 class="h3 mb-0">{{ __('login.PleaseSignIn') }}</h1>
             </div>
             @if(session()->has('error'))
@@ -72,8 +73,6 @@
                 	<var onclick="jQuery('#frmLogin').attr('action','/forget-password'); jQuery('#frmLogin').submit();"
                 		style="cursor:pointer">
                 		{{ __('login.ForgetPassword') }}</var></p>
-                <p class="text-muted">
-                	<a href="{{  URL::to('/???') }}">{{ __('login.ResendActivateEmail') }}</a></p>
             </div>
             
             <div class="or-seperator"><i>{{ __('login.SocialLogin') }}</i></div>
