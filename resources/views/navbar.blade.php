@@ -20,10 +20,10 @@
 	        	{{ __('navbar.home') }} <span class="sr-only">(current)</span></a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="#"> {{ __('navbar.sites') }} </a>
+	        <a class="nav-link" href="{{ \URL::to('/construction') }}"> {{ __('navbar.sites') }} </a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="#"> {{ __('navbar.volunteers') }} </a>
+	        <a class="nav-link" href="{{ \URL::to('/construction') }}"> {{ __('navbar.volunteers') }} </a>
 	      </li>
 	    </ul>
     </div>
@@ -37,7 +37,7 @@
 	    	    </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
 		           <div class="nav-subitem">	
-		           	<a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">
+		           	<a href="{{ \URL::to('/construction') }}" class="text-sm text-gray-700 underline">
 					<em class="fa fa-id-card"></em> {{ __('navbar.profile') }}</a>
 				  </div>
  	              <div class="nav-subitem">	
@@ -67,14 +67,7 @@
 	</div> 
 	<div style="clear:both"></div>   
   </div>
-  <div>
-	<form class="form-inline my-2 my-lg-0">
-	    <input class="form-control mr-sm-2" type="search" placeholder="{{ __('navbar.search') }}" aria-label="Search">
-	    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-	    <em class="fa fa-search"></em></button>
-	</form>
   </div>
-  
 </nav>
 @if (isset($msg))
 	<div class="alert {{ $msgClass ?? '' }}"> 

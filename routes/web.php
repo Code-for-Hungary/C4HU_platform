@@ -51,5 +51,8 @@ Route::get('doemailverify/{token}', 'App\Http\Controllers\EmailVerifyController@
 Route::get('construction', function(Request $request) {
 	return view('construction');
 });
+Route::get('cookieenable', 'App\Http\Controllers\CookieController@set1');
+Route::get('cookiedisable','App\Http\Controllers\CookieController@set0');
+Route::get('textpage/{name}', 'App\Http\Controllers\TextpageController@show');
 
 

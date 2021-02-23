@@ -1,11 +1,14 @@
 body {
-    font-family: 'Nunito'; font-size:14pt; color #808080;
+    font-family: 'Nunito'; font-size:14pt; color: #808080;
 }
-#app {padding:2%}
-#app .row {margin-left:0px; margin-right:0px}
-#app button {width:auto}
+svg {height:32px;}
+svg.ml-4 {height:32px;}
+img.logo {height:65px}
+.pageBody {min-height:200px; padding:10px;}
+.row {margin-left:0px; margin-right:0px}
+button {width:auto}
+.btn { border-style:solid; border-width:1px; border-color: #808080; width:auto}
 .text-sm {font-size:14pt;}
-#app .logo {height:65px}
 #app nav {width:100%; border-style:solid; border-color:#296395; border-width:0px 0px 2px 0px; padding-bottom:2px}
 #app nav .navbar-collapse {padding-left:0px;}
 #app nav ul {padding-left:0px;}
@@ -14,45 +17,49 @@ body {
 #app .navbar-nav .nav-subitem {width:100%; display:block; padding:1px}
 #app .navbar-nav .nav-item:hover {background-color:#ceefee}
 #app .navbar-nav .nav-subitem:hover {background-color:#ceefee}
-#app .pageBody {min-height:200px}
-#app .footer {min-height:100px; margin-top:5px; 
-	border-style:solid; border-width:2px 0px 0px 0px; background-color:silver}
-
-#app .btn { border-style:solid; border-width:1px; border-color: #808080; width:auto}
 #app .dropdown-menu {padding:4px 4px 4px 4px}
-#app a {display:inline-block; width:auto;}
-#app .fa-facebook {background-image:url('images/facebook.png'); background-size:14px; background-repeat:no-repeat;
-	height:14px; width:14px; margin-right:3px;}
-#app .fa-github {background-image:url('images/github.png'); background-size:22px; background-repeat:no-repeat;
-	height:14px; width:18px; margin-right:3px;}
-#app .fa-google {background-image:url('images/google.png'); background-size:14px; background-repeat:no-repeat;
-	height:14px; width:14px; margin-right:3px;}
-#app svg {height:32px;}
 
-#app .loginForm {text-align:center}
-#app .loginForm form {display:inline-block; width:400px; text-align:left}
+a {display:inline-block; width:auto;}
+.fa-facebook {background-image:url('images/facebook.png'); background-size:14px; background-repeat:no-repeat;
+	height:14px; width:14px; margin-right:3px;}
+.fa-github {background-image:url('images/github.png'); background-size:22px; background-repeat:no-repeat;
+	height:14px; width:18px; margin-right:3px;}
+.fa-google {background-image:url('images/google.png'); background-size:14px; background-repeat:no-repeat;
+	height:14px; width:14px; margin-right:3px;}
+
+.loginForm {text-align:center}
+.loginForm form {display:inline-block; width:400px; text-align:left}
+
+.footer {min-height:100px; margin-top:5px; padding:5px;
+	border-style:solid; border-width:2px 0px 0px 0px; background-color:#e0f0e0}
+.js-cookie-consent {background-color:#d0d0d0; padding:20px; 
+	position:fixed; z-index:99; top:100px; left:100px; border-style:solid; border-radius:10px; 
+}
+#cookieDisable { text-align:right}
+	
+	
 
 @media (min-width: 768px) {
-	#app .navbar-toggler {display:none} 
+	.navbar-toggler {display:none} 
 	
 @media (min-height: 800px) {
-	#app .pageBody {min-height: 600px}
+	.pageBody {min-height: 600px}
 }	
 @media (min-height: 1000px) {
-	#app .pageBody {min-height: 600px}
+	.pageBody {min-height: 600px}
 }	
 @media (min-height: 1200px) {
-	#app .pageBody {min-height: 800px}
+	.pageBody {min-height: 800px}
 }	
 @media (min-height: 1400px) {
-	#app .pageBody {min-height: 1000px}
+	.pageBody {min-height: 1000px}
 }	
 @media (min-height: 1600px) {
-	#app .pageBody {min-height: 1200px}
+	.pageBody {min-height: 1200px}
 }	
 @media (min-height: 1800px) {
-	#app .pageBody {min-height: 1400px}
+	.pageBody {min-height: 1400px}
 }	
 @media (min-height: 2000px) {
-	#app .pageBody {min-height: 1600px}
+	.pageBody {min-height: 1600px}
 }	

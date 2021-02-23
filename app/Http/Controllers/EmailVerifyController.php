@@ -17,6 +17,7 @@ class EmailVerifyController extends Controller
 	* @return string full HTML page
 	*/	
 	public function form(Request $request) {
+		$result = '';
 		$user = \Auth::user();
 		if (!$user) {
 			$result = redirect(\URL::to('/'));		

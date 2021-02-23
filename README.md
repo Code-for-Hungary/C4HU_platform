@@ -2,7 +2,11 @@
 
 státusz: fejlesztés alatt
 
-Készültség: 1%
+Készültség: 3%  v0.02-alpha
+
+Verzió történet:
+v0.01 2021.02.21 e-mail ellenörzés branch: developer-emailverify
+v0.02            footer
 
 Kapcsolodó doksik: [https://drive.google.com/drive/folders/1bj8Zjtp5O1WVJ4coucLoEstYPXpQrEi-](https://drive.google.com/drive/folders/1bj8Zjtp5O1WVJ4coucLoEstYPXpQrEi-)
 
@@ -31,7 +35,8 @@ A weboldal elsősorban desctop/laptop/table használatra legyen optimalizálva, 
 Sotware: Laravel  8.28.1 alapon készül. lásd: [laravel-readme.md](laravel-readme.md) és [laravel.com](http://laravel.com)
 
 További felhasznált szellemi termékek: [jQuery](http://jquery.com), [bootstrap](https://getbootstrap.com/), [Awesore fonts](https://fontawesome.com/),
-[pixabay](https://pixabay.com/),  [gravatar](http://gravatar.com), [facebook](http://facebook.com), [google](http://google.com), [github](http://github.com)
+[pixabay](https://pixabay.com/),  [gravatar](http://gravatar.com), [facebook](http://facebook.com), [google](http://google.com), [github](http://github.com),
+[spatie cookie consent](https://github.com/spatie/laravel-cookie-consent)
 
 ## Licensz
 
@@ -48,6 +53,10 @@ php artisan migrate
 ## lokális teszt futtatás
 ```
 php artisan serve
+```
+## tests
+```
+php artisan test
 ```
 ## Feltöltés WEB szerverre
 
