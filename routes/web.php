@@ -43,16 +43,16 @@ Route::post('forget-password', function() {
 Route::get('reset-password/{token}', 'App\Http\Controllers\Auth\ResetPasswordController@getPassword');
 Route::post('reset-password', 'App\Http\Controllers\Auth\ResetPasswordController@updatePassword');
 
-// -------------------------- email verify -----------------------------------
 Route::get('emailverifyform', 'App\Http\Controllers\EmailVerifyController@form');
 Route::get('sendemailverify/{email}', 'App\Http\Controllers\EmailVerifyController@send');
 Route::get('doemailverify/{token}', 'App\Http\Controllers\EmailVerifyController@do');
-// ----------------------------------------------------------------------------
 Route::get('construction', function(Request $request) {
 	return view('construction');
 });
 Route::get('cookieenable', 'App\Http\Controllers\CookieController@set1');
 Route::get('cookiedisable','App\Http\Controllers\CookieController@set0');
 Route::get('textpage/{name}', 'App\Http\Controllers\TextpageController@show');
+Route::get('bugreportform', 'App\Http\Controllers\BugreportController@form');
+Route::post('bugreportsend', 'App\Http\Controllers\BugreportController@send');
 
 

@@ -108,5 +108,10 @@ php artisan migrate
 
 edit app/Http/Controllers/auth/LoginConbtroller.php (lásd a fenti bázis url -ben)
 
-copy az új és modositott fájlokat ebből a repo ból a **resources, routes, app** könyvtárakba
+```
+composer require spatie/laravel-cookie-consent
+php artisan vendor:publish --provider="Spatie\CookieConsent\CookieConsentServiceProvider" --tag="config"
+```
+copy az új és modositott fájlokat ebből a repo ból a **resources, routes, app** könyvtárakba (belértve az alkönyvtárakat is)
+
 

@@ -1,4 +1,4 @@
-<div class="js-cookie-consent cookie-consent"> 
+<div class="js-cookie-consent cookie-consent" style="display:none"> 
 	<p style="text-align:center">
 	    <span class="cookie-consent__message">
 	        {!! trans('cookieConsent::texts.message') !!}
