@@ -30,4 +30,8 @@ class URL {
 		return $s;
 	}
 }
+class Mail {
+    public static function send($template, $params, $mailFun) {
+    }
+}
 ?>

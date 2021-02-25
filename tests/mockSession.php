@@ -6,6 +6,9 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 class SessionMock extends Session {
 	public static function regenerateToken() {
 	}
+	public static function token() {
+	    return '';
+	}
 }
 
 class RequestWithSession extends \Illuminate\Http\Request {

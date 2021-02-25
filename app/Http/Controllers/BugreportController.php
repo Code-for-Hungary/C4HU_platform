@@ -24,14 +24,19 @@ class BugreportController extends Controller
 	 * @return string
 	 */
 	public function send(Request $request) {
-	    $this->email = env('MAIL_FROM_ADDRESS');
+	    $this->email = env('APP_EMAIL');
 	    if ($request->input('_token') == $request->session()->token()) {
-	        \Mail::send('bugreport_mail',
-	            ["description" => $request->input("description"), "taskInfo" => $request->input('taskInfo')],
-	            function($m) {
-	                $this->mailer($m);
-	            });
-	       return view('welcome',["msg" => __('bugreport.emailSended'), "msgClass" => "alert-success"]);
+	        Try {
+                \Mail::send('bugreport_mail',
+    	                ["description" => $request->input("description"), "taskInfo" => $request->input('taskInfo')],
+    	                function($m) {
+    	                    $this->mailer($m);
+                });
+    	        return view('welcome',["msg" => __('bugreport.emailSent'), "msgClass" => "alert-success"]);
+	        }
+	        catch (exception $e) { 
+	            return view('welcome',["msg" => $e->getMessage(), "msgClass" => "alert-danger"]);
+	        }
 	    } else {
 	        echo 'Fatal error CSR token invalid'; exit();
 	    }

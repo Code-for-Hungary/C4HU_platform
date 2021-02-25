@@ -40,6 +40,7 @@ $taskInfo->REQUEST_METHOD = $_SERVER['REQUEST_METHOD'];
 $taskInfo->HTTP_USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
 $taskInfo->REQUESTS = request()->all();
 $taskInfo->SESSIONS = request()->session()->all();
+$taskInfo->USER = \Auth::user();
 request()->session()->put('taskInfo',$taskInfo);
 ?>
 </pre></div>
