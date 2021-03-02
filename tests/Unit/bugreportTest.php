@@ -24,7 +24,7 @@ class bugreportTest extends TestCase
     	$request = RequestWithSession::create('/store', 'POST',[]);
    		$request->withSession();
     	$result = $c->form( $request );
-        $this->assertEquals('bugreport/',$result);
+        $this->assertEquals('bugreport',$result);
     }
 
     public function test_send()
@@ -35,7 +35,8 @@ class bugreportTest extends TestCase
     	$request = RequestWithSession::create('/store', 'POST',[]);
    		$request->withSession();
     	$result = $c->send( $request );
-        $this->assertEquals('welcome/E-mail elküldve a rendszergazdának. Köszönjük segitségét.,alert-success',$result);
+    	$this->assertEquals('welcome',$result);
+    	$this->assertEquals('E-mail elküldve a rendszergazdának. Köszönjük segitségét.',viewP('msg'));
     }
 }
 ?>

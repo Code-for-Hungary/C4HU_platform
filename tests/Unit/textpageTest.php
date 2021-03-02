@@ -12,7 +12,8 @@ class textpageTest extends TestCase
         $request = RequestWithSession::create('/store', 'POST',[]);
         $request->withSession();
         $result = $c->show( $request, 'policy1' );
-        $this->assertEquals('textpage//var/www/html/LaravelSocialite/resources/lang/hu/policy1.html',$result);
+        $this->assertEquals('textpage',$result);
+        $this->assertEquals('/var/www/html/LaravelSocialite/resources/lang/hu/policy1.html',viewP('fname'));
     }
     public function test_form_notFound()
     {

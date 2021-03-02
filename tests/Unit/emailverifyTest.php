@@ -38,7 +38,8 @@ class emailverifyTest extends TestCase
     	$request = RequestWithSession::create('/store', 'POST',[]);
    		$request->withSession();
     	$result = $c->form( $request );
-        $this->assertEquals('emailverify/user1@test.hu',$result);
+    	$this->assertEquals('emailverify',$result);
+    	$this->assertEquals('user1@test.hu',viewP('email'));
     }
 
     public function test_send_emailNotFounf()
@@ -49,7 +50,8 @@ class emailverifyTest extends TestCase
     	$request = RequestWithSession::create('/store', 'POST',[]);
    		$request->withSession();
     	$result = $c->send( $request, 'notfound@test.hu');
-        $this->assertEquals('welcome/notfound@test.hu email not unique or not found,alert-danger',$result);
+    	$this->assertEquals('welcome',$result);
+    	$this->assertEquals('notfound@test.hu email not unique or not found',viewP('msg'));
     }
 
     public function test_send_emailFound()
@@ -60,7 +62,8 @@ class emailverifyTest extends TestCase
     	$request = RequestWithSession::create('/store', 'POST',[]);
    		$request->withSession();
     	$result = $c->send( $request, 'test@test.hu');
-        $this->assertEquals('welcome/Aktiváló e-mail elküldve.,alert-info',$result);
+    	$this->assertEquals('welcome',$result);
+    	$this->assertEquals('Aktiváló e-mail elküldve.',viewP('msg'));
     }
 
     public function test_do_TokenFound()
@@ -72,7 +75,8 @@ class emailverifyTest extends TestCase
    		$request->withSession();
    		\DB::update('update users set remember_token = "123456789" where email = "test@test.hu"');
     	$result = $c->do( $request, '123456789');
-        $this->assertEquals('welcome/e-mail cím ellenörzés sikeres, fiók aktiválva,alert-success',$result);
+    	$this->assertEquals('welcome',$result);
+    	$this->assertEquals('e-mail cím ellenörzés sikeres, fiók aktiválva',viewP('msg'));
     }
 
     public function test_do_TokenNotFound()
@@ -83,7 +87,7 @@ class emailverifyTest extends TestCase
     	$request = RequestWithSession::create('/store', 'POST',[]);
    		$request->withSession();
     	$result = $c->do( $request, '123456');
-        $this->assertEquals('welcome/invalid token,alert-danger',$result);
+        $this->assertEquals('welcome',$result);
     }
     
 }

@@ -95,7 +95,9 @@ class EmailVerifyController extends Controller
 		if ($affected == 1) {
 			return view('welcome',["msg" => __('emailverify.successActivated'), "msgClass" => "alert-success" ]);
 		} else {
-			return view('welcome',["msg" => "invalid token", "msgClass" => "alert-danger" ]);	
+		    // a sikeres email küldés automatikusan aktiválta a fiokot. 
+		    // Ezért ha ide jött a vezérlés az nem feltétlenül hiba.
+			return view('welcome',[]);	
 		}		
 	}
 

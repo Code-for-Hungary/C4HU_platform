@@ -54,5 +54,10 @@ Route::get('cookiedisable','App\Http\Controllers\CookieController@set0');
 Route::get('textpage/{name}', 'App\Http\Controllers\TextpageController@show');
 Route::get('bugreportform', 'App\Http\Controllers\BugreportController@form');
 Route::post('bugreportsend', 'App\Http\Controllers\BugreportController@send');
+Route::get('profileform', 'App\Http\Controllers\ProfileController@form');
+Route::post('profilesave', 'App\Http\Controllers\ProfileController@save');
+Route::get('profiledel', 'App\Http\Controllers\ProfileController@delete');
+Route::get('profilesysadmins', 'App\Http\Controllers\ProfileController@sysadmins');
+Route::get('profilesetsysadmin/{userName}/{action}', 'App\Http\Controllers\ProfileController@setsysadmin');
 
 

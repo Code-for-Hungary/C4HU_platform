@@ -5,8 +5,11 @@ státusz: fejlesztés alatt
 Készültség: 4%  v0.03-alpha
 
 Verzió történet:
+
 v0.01 2021.02.21 e-mail ellenörzés branch: developer-emailverify
+
 v0.02 2021.02.25 footer branch: developer-footer
+
 v0.03            user profile  branch: developer-profile
 
 Kapcsolodó doksik: [https://drive.google.com/drive/folders/1bj8Zjtp5O1WVJ4coucLoEstYPXpQrEi-](https://drive.google.com/drive/folders/1bj8Zjtp5O1WVJ4coucLoEstYPXpQrEi-)
@@ -14,6 +17,8 @@ Kapcsolodó doksik: [https://drive.google.com/drive/folders/1bj8Zjtp5O1WVJ4coucL
 Chat: [https://codeforhungary.slack.com/archives/C01MV5D61C5](https://codeforhungary.slack.com/archives/C01MV5D61C5)
 
 NGO -k új web oldalainak kialakításához, meglévő  web oldalainak fejlesztéséhez, üzemeltetéséhez önkéntesek toborzása, támogatás nyújtása. Az igények és a jelentkező önkéntesek egymásra találásának elősegítése.
+
+[Élő demo](http://utopszkij.tk)
 
 ![Logo](public/images/logo.png)
 
@@ -61,24 +66,51 @@ php artisan test
 ```
 ## Feltöltés WEB szerverre
 
+1. MYSQL adatbázis létrehozása (utf8m4_hunagrain_ci illesztéssel) és kezdeti feltöltése (parancssori mysql vagy phpmyadmin -al)
+
+2. .env módosítása az aktuális adatbázis elérés ,levelezési és web site url beállításokhoz.
+
+3. A továbbiak attól függően másként alakulnak, hogy van-e lehetőségünk a web szerver document_root modosítására.
+
+3.1 ha van lehetőségünk a szerveren a document_rot modositására:
+ 
 könyvtár struktúra a web szerveren:
+
 ```
     app/                 
     bootstrap/           
     config/
     database/
-    public_html/         <- Ez a web szerver DOCUMENT_ROOT (egyes helyeken lehet más a neve)
+    public/         <- Ide mutasson a web szerver document_root!
     resources/
     routes
     storage/
     vendor/
-    artisan              
 ```
-upload ennek a reponak a  **public** könyvtárát a **public_html** -be
 
-upload ennek a reponak a többi könyvtárát változatlan néven a web szerverre (a fent megadott könyvtár szerkezetbe)
+fájlok a fő könyvtárban: .env, server.php, artisan
 
-edit bootstrap/paths.php     a **publik** a **public_html**  -re mutassan
+3.2 Ha nincs lehetőségünk a document_root modositására:
+
+könyvtár struktúra a document_root alatt:
+
+```
+    app/                 
+    bootstrap/           
+    config/
+    database/
+    resources/
+    routes
+    storage/
+    vendor/
+```
+
+fájlok a fő könyvtárban: .env, server.php, artisan
+
+A public könyvtár tartalmát (alkönyvtárakkal együtt) is a document_root -ba töltsük fel.
+
+Az index.php -t modositsuk, töröljünk minden file utvonalból a "../" részt.
+
 
 # project alapja 
 [https://www.soengsouy.com/2020/12/login-with-laravel-8-and-socialite.html](https://www.soengsouy.com/2020/12/login-with-laravel-8-and-socialite.html)

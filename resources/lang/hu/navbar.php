@@ -8,5 +8,6 @@ return [
 	"regist" => "Regisztrálás",
 	"search" => "Keresés",
 	"sites" => "WEb oldalak",
-	"volunteers" => "Önkéntesek"
+	"volunteers" => "Önkéntesek",
+    "sysadmins" => "Rendszergazdák"
 ];

@@ -18,6 +18,11 @@ button {width:auto}
 #app .navbar-nav .nav-item:hover {background-color:#ceefee}
 #app .navbar-nav .nav-subitem:hover {background-color:#ceefee}
 #app .dropdown-menu {padding:4px 4px 4px 4px}
+#userMenu {width:220px; margin-left:-50px}
+
+#popup {display:none; position:fixed; z-index:1200; left:10%; top:10%;
+	   width:auto; height:auto; padding:10px;	 
+       background-color:#d0d0d0; border-style:solid; border-width:1px;}
 
 a {display:inline-block; width:auto;}
 .fa-facebook {background-image:url('images/facebook.png'); background-size:14px; background-repeat:no-repeat;
