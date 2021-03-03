@@ -20,6 +20,10 @@ button {width:auto}
 #app .dropdown-menu {padding:4px 4px 4px 4px}
 #userMenu {width:220px; margin-left:-50px}
 
+#welcome {text-align:center}
+.welcome-container {display:inline-block; width:80%; padding:5%; text-align:left}
+.welcome-container img {width:40%; margin:1%; float:left}
+
 #popup {display:none; position:fixed; z-index:1200; left:10%; top:10%;
 	   width:auto; height:auto; padding:10px;	 
        background-color:#d0d0d0; border-style:solid; border-width:1px;}

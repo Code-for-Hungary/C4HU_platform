@@ -2,7 +2,7 @@
 
 státusz: fejlesztés alatt
 
-Készültség: 4%  v0.03-alpha
+Készültség: 5%  v0.04-alpha
 
 Verzió történet:
 
@@ -10,7 +10,9 @@ v0.01 2021.02.21 e-mail ellenörzés branch: developer-emailverify
 
 v0.02 2021.02.25 footer branch: developer-footer
 
-v0.03            user profile  branch: developer-profile
+v0.03 2021.03.03 user profile  branch: developer-profile
+
+v0.04            kezdő képernyő branch: developer-welcome
 
 Kapcsolodó doksik: [https://drive.google.com/drive/folders/1bj8Zjtp5O1WVJ4coucLoEstYPXpQrEi-](https://drive.google.com/drive/folders/1bj8Zjtp5O1WVJ4coucLoEstYPXpQrEi-)
 

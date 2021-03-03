@@ -32,7 +32,7 @@ class ProfileController extends Controller
 	            "popupBody" => __('profile.delete'),
 	            "popupYesDanger" => 1,
 	            "popupYesUrl" => \URL::to('/profiledel'),
-	            "popupNoUrl" => \URL::to('/profile')
+	            "popupNoUrl" => \URL::to('/profileform')
 	        ]);
 	    }
 	    return $result;
@@ -67,8 +67,28 @@ class ProfileController extends Controller
 	 * sysadmin nem törölhető!
 	 * @param Request $request
 	 */
-	public function delete(Request $request): string {
-	    return '';
+	public function delete(Request $request) {
+	    $user = \Auth::user();
+	    if ($user) {
+	        $model = new Profile();
+	        $profile = $model->getById($user->id);
+	        if ($profile->sysadmin != 1) {
+	            if ($user->email != 'user1@test.hu') {
+	               User::where('id','=',$user->id)->update([
+	                "name" => "deleted".$user->id,
+	                "email" => "deleted".$user->id."@test.hu",
+	                "password" => ""
+	               ]);
+	            }
+	            \Auth::guard()->logout();
+	            $result = view('welcome',[]);
+	        } else {
+	            $result = view('welcome',["msg" => __('profile.access_violation'), "msgClass" => "alert-danger"]);
+	        }
+	    } else {
+	        $result = view('welcome',["msg" => __('profile.access_violation'), "msgClass" => "alert-danger"]);
+	    }
+	    return $result;
 	}
 	
 	/**

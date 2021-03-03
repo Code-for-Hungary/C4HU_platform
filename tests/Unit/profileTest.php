@@ -222,15 +222,46 @@ class profileTest extends TestCase
 	}
 	
 	public function test_delete_notlegged() {
-	    $this->assertEquals('','');
+	    global $logged;
+	    $logged = false;
+	    $request = RequestWithSession::create('/store', 'GET',[]);
+	    $result = $this->c->delete($request);
+	    $this->assertEquals('welcome',$result);
+	    $this->assertEquals('Ez a funkció neked nem engedélyezett', viewP('msg'));
 	}
 	
 	public function test_delete_sysadmin() {
-	    $this->assertEquals('','');
+	    global $logged;
+	    $logged = true;
+	    
+	    // test user sysadmin
+	    $user = \Auth::user();
+	    $profileModel = new Profile();
+	    $profile = $profileModel->getByEmail($user->email);
+	    $profile->sysadmin = 1;
+	    $profileModel->saveRec($profile);
+	    
+	    $request = RequestWithSession::create('/store', 'GET',[]);
+	    $result = $this->c->delete($request);
+	    $this->assertEquals('welcome',$result);
+	    $this->assertEquals('Ez a funkció neked nem engedélyezett', viewP('msg'));
 	}
 	
 	public function test_delete_ok() {
-	    $this->assertEquals('','');
+	    global $logged;
+	    $logged = true;
+	    
+	    // test user not sysadmin
+	    $user = \Auth::user();
+	    $profileModel = new Profile();
+	    $profile = $profileModel->getByEmail($user->email);
+	    $profile->sysadmin = 0;
+	    $profileModel->saveRec($profile);
+	    
+	    $request = RequestWithSession::create('/store', 'GET',[]);
+	    $result = $this->c->delete($request);
+	    $this->assertEquals('welcome',$result);
+	    $this->assertEquals('welcome',$result);
 	}
 	
 	

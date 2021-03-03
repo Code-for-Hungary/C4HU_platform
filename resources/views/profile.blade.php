@@ -76,15 +76,13 @@
 	                    	<button type="submit" class="btn btn-primary">{{ __('profile.save') }}</button>
 						</div>
 	                    <div class="form-group">
-	                    	<button  type="button" class="btn btn-danger" 
-	                    		onclick="$('#popup').show(); " }}>
-	                    		{{ __('profile.delete') }}</button>
 	                    	@if ($sysadmin == 1)
 	                    	<a class="btn btn-secondary" href="{{ \URL::to('profilesysadmins') }}">
 	                    		{{ __('profile.sysadmins') }}</a>
 	                    	@else
-	                    	<a  class="btn btn-danger" href="{{ \URL::to('profiledel') }}">
-	                    		{{ __('profile.delete') }}</a>
+	                    	<button type="button"  class="btn btn-danger" 
+	                    		onclick="$('#popup').show();">
+	                    		{{ __('profile.delete') }}</button>
 	                    	@endif
 						</div>
 	                    <div class="form-group">
