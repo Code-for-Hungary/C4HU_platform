@@ -36,5 +36,6 @@ return [
     "passwords_not_equals" => "a két jelszó nem azonos",
     "The selected password2 is invalid." => "A második jelszó nem azonos az elsővel",
     "database error" => "Hiba az adatbázisba tárolás közben",
-    "back" => "Vissza"
+    "back" => "Vissza",
+    "sendEmail" => "E-mail küldése"
 ];

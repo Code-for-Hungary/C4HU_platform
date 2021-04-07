@@ -12,19 +12,19 @@
             	<img src="/images/logo.png" class="logo" />
 	            <div class="row">
 	                <div class= "col-sm-3">
-	                	<h2>{{ __('profile.filter') }}</h2>
+	                	<h2>{{ __('project.filter') }}</h2>
 	                	<div id="skillsTree"></div>
 	                </div>	
-	                <div class= "col-sm-9" id="profilesTable">
-	                	<h2>{{ __('profile.voluntarees') }}</h2>
+	                <div class= "col-sm-9" id="projectsTable">
+	                	<h2>{{ __('project.projects') }}</h2>
 						<table class="table table-bordered table-hover">
 						    <thead>
 						        <th></th>
 						        <th>
-						        	<a href="/profiles?page=1&orderfield=users.name">
-						        	{{ __('profile.name') }}
-						        	@if ($profiles->orderField == 'users.name')
-						        		@if ($profiles->orderDir == 'ASC')
+						        	<a href="/projects?page=1&orderfield=projects.name">
+						        	{{ __('project.name') }}
+						        	@if ($projects->orderField == 'projects.name')
+						        		@if ($projects->orderDir == 'ASC')
 						        			<em class="fa fa-caret-down"></em>
 						        		@else
 						        			<em class="fa fa-caret-up"></em>
@@ -33,10 +33,10 @@
 						        	</a>
 						        </th>
 						        <th>
-						        	<a href="/profiles?page=1&orderfield=profiles.publicinfo">
-						        	{{ __('profile.publicinfo') }}
-						        	@if ($profiles->orderField == 'profiles.publicinfo')
-						        		@if ($profiles->orderDir == 'ASC')
+						        	<a href="/projects?page=1&orderfield=projects.status">
+						        	{{ __('project.status') }}
+						        	@if ($projects->orderField == 'projects.status')
+						        		@if ($projects->orderDir == 'ASC')
 						        			<em class="fa fa-caret-down"></em>
 						        		@else
 						        			<em class="fa fa-caret-up"></em>
@@ -45,10 +45,10 @@
 						        	</a>
 						        </th>
 						        <th>
-						        	<a href="/profiles?page=1&orderfield=skills">
-						        	{{ __('profile.skills') }}
-						        	@if ($profiles->orderField == 'skills')
-						        		@if ($profiles->orderDir == 'ASC')
+						        	<a href="/projects?page=1&orderfield=projects.deadline">
+						        	{{ __('project.deadline') }}
+						        	@if ($projects->orderField == 'projects.deadline')
+						        		@if ($projects->orderDir == 'ASC')
 						        			<em class="fa fa-caret-down"></em>
 						        		@else
 						        			<em class="fa fa-caret-up"></em>
@@ -56,30 +56,54 @@
 						        	@endif
 						        	</a>
 						        </th>
+						        <th>
+						        	<a href="/projects?page=1&orderfield=skills">
+						        	{{ __('project.skills') }}
+						        	@if ($projects->orderField == 'skills')
+						        		@if ($projects->orderDir == 'ASC')
+						        			<em class="fa fa-caret-down"></em>
+						        		@else
+						        			<em class="fa fa-caret-up"></em>
+						        		@endif
+						        	@endif
+						        	</a>
+						        </th>
+						        
 						    </thead>
 						    <tbody>
-						        @if ($profiles->count() == 0)
+						        @if ($projects->count() == 0)
 						        <tr>
-						            <td colspan="4">{{ __('profile.notrecords') }}</td>
+						            <td colspan="5">{{ __('project.notrecords') }}</td>
 						        </tr>
 						        @endif
 						
-						        @foreach ($profiles as $profile)
+						        @foreach ($projects as $project)
 						        <tr>
-						            <td><img class="avatar" src="{{ $profile->avatar }}" /></td>
-						            <td><a href="/profileshow/{{ $profile->id }}">
-						            	{{ $profile->name }}
+						            <td><img class="avatar" src="{{ $project->avatar }}" /></td>
+						            <td><a href="/projecthow/{{ $project->id }}">
+						            	{{ $project->name }}
 						            	</a>
-						            	</td>
-						            <td>{{ $profile->publicinfo }}</td>
-						            <td>{{ $profile->skills }}</td>
+						            	@if ($project->website != '') 
+						            	<br />
+						            	<a href="{{ $project->website 	}}" target="_new">web site</a>
+						            	@endif
+						            </td>
+						            <td>{{ __('project.'.$project->status) }}</td>
+						            <td>{{ $project->deadline }}</td>
+						            <td>{{ $project->skills }}</td>
 						        </tr>
 						        @endforeach
 						    </tbody>
 						</table>
-						{{ $profiles->links() }}
+						{{ $projects->links() }}
 						<p>
-						    {{$profiles->count()}} / {{ $profiles->total() }} 
+						    {{$projects->count()}} / {{ $projects->total() }} 
+						</p>
+						<p class="buttons">
+							<a class="btn btn-primary" href="/project/0">
+								<em class="fa fa-plus-square"></em>
+								{{ __('project.add') }}
+							</a>						
 						</p>
 	                </div>
 	            </div>
@@ -100,13 +124,13 @@
         	var skillTree = new Tree('#skillsTree', {
                 		data: {!! $skillsTree !!},
                 		closeDepth:10,
-                		values: JSON.parse(decodeEntities("{{ $profiles->filter }}")),
+                		values: JSON.parse(decodeEntities("{{ $projects->filter }}")),
                 		onChange: function() {
                 			console.log(this.values);
                 			if (this.doRedirect) {
                 				let s = JSON.stringify(this.values);
                 				s = encodeURI(s.replaceAll(/\"/g,''));
-                				window.setTimeout('location="/profiles?page=1&filter='+s+'"',500);
+                				window.setTimeout('location="/projects?page=1&filter='+s+'"',500);
                 			}	
                 		},	
                 		loaded: function() {

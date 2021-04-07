@@ -238,16 +238,36 @@ class ProfileController extends Controller
 	
 	/**
 	* profile adatok megjelenítése
-	* @param Request $request   - back paraméter érkezhet
+	* @param Request $request  
 	* @param int $id
 	* @return void
 	*/
 	public function show(Request $request, int $id) {
 	        $modelProfile = new Profiles();
 	        $profile = $modelProfile->fullGet($id);
-	        $result = view('profileshow',["profile" => $profile, 
-	                                      "back" => $request->input('back','')]);
+	        $request->session()->put('showProfile',$id);
+	        $result = view('profileshow',["profile" => $profile]);
 	    return $result;
 	}
+	
+	/**
+	* email küldő form megjelenítése (CSR tokent is kiir)
+	* a sessionban a 'showProfile' tartalmazza a címzett user id -t
+	* @param Request $request 
+	*/
+	public function emailForm(Request $request) {
+		return 'email form';
+	}
+	
+	/**
+	* email elküldése CSR ellenörzéssel
+	* a cimzett a sessionból 'showProfile'
+	* csak bejelentkezett user küldhet levelet
+	* @param Request $request 
+	*/
+	public function sendEmail(Request $request) {
+		return 'email elküldése';	
+	}
+	
 	
 }

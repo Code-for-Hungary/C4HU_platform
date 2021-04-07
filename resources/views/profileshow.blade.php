@@ -8,6 +8,8 @@
 	    	@include('navbar')
 	    	@include('popup');
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
+           		<h2>{{ env('APP_NAME') }}</h2>	
+            	<img src="/images/logo.png" class="logo" />
 				@if (count($errors) > 0)
 				   <div class = "alert alert-danger">
 				      <ul>
@@ -87,15 +89,17 @@
                         		<p>{{ $skill->name }} {{ $skill->level }}</p>
                         	@endforeach
 		                </div>
-		                @if ($back != '')
 	                    <div class="form-group">
+							<a href="/construction" class="btn bt-secondary">
+								<em class="fa fa-envelope"></em>
+								{{ __('profile.sendEmail') }}
+							</a>
 	                    	<a class="btn btn-primary" id="btnBack"
-	                    		href="{{ $back }}">
+	                    		href="{{ url()->previous() }}">
 	                    		<em class="fa fa-undo"></em>
 	                    		{{ __('profile.back') }}
 	                    	</a>
 						</div>
-						@endif
                     </form>
                     <p>Saját adataidat a "profil" menüpontban módosíthatod.</p>
                 </div>

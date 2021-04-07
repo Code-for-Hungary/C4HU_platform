@@ -12,10 +12,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class ProjectController extends Controller
+class ProjectsController extends Controller
 {
 	/**
-	* profile képenyő (felvitel vagy modosítás)
+	* project képenyő (felvitel vagy modosítás)
 	* @param Request $request
 	* @param int $id  ha 0 akkor új felvitel
 	* @return string full HTML page
@@ -24,7 +24,7 @@ class ProjectController extends Controller
 	    $result = '';
 	    $user = \Auth::user();
 	    if (!$user) {
-	        $result = view('welcome',["msg" => __('profile.notlogged'), "msgClass" => "alert-danger"]);
+	        $result = view('welcome',["msg" => __('project.notlogged'), "msgClass" => "alert-danger"]);
 	    } else {
 	        $modelProject = new Projects();
 	        if ($id > 0) {
@@ -50,8 +50,7 @@ class ProjectController extends Controller
 	        $skillsModel = new Skills();
 	        $result = view('project',["project" => $project,
 	            "skillsTree" => $skillsModel->getJsonStr(),
-	            "skills" => JSON_encode($skills),
-	            "back"=> urlencode('/projects?page='.$request->input('page','1'))
+	            "skills" => JSON_encode($skills)
 	         ]);
 	         	    }
 	    return $result;
@@ -64,30 +63,25 @@ class ProjectController extends Controller
 	*/
 	public function save(Request $request): string {
 		
+		/*		
 		$validated = $request->validate([
         	'password2' =>  Rule::in([$request->input('password')])
-    	]);		
+    	]);
+    	*/
+    	
 		
 	    $user = \Auth::user();
 	    if (!$user) {
-	        $result = view('welcome',["msg" => __('profile.notlogged'), "msgClass" => "alert-danger"]);
+	        $result = view('welcome',["msg" => __('project.notlogged'), "msgClass" => "alert-danger"]);
 	    } else {
 	    	
-			// jelszómodosítás
-			if ($request->input('password') != '') {
-				if ($request->input('password') == $request->input('password2')) {
-					$user->password = \Hash::make($request->input('password'));
-					$user->save();
-				} else {
-			        $result = view('welcome',["msg" => __('profile.passwords_not_equals'), "msgClass" => "alert-danger"]);
-				}			
-			}
+	    	// ha modositás (id > 0) akkor csak azt modosithatja, ahol Ő a projektgazda
 			
-			$profileModel = new Profiles();
-			if ($profileModel->saveFormData($user, $request)) {
-		        $result = view('welcome',["msg" => __('profile.saved'), "msgClass" => "alert-success"]);
+			$projectModel = new Projects();
+			if ($projectModel->saveFormData($user, $request)) {
+		        $result = view('welcome',["msg" => __('project.saved'), "msgClass" => "alert-success"]);
 			} else {
-		        $result = view('welcome',["msg" => __('profile.database error'), "msgClass" => "alert-danger"]);
+		        $result = view('welcome',["msg" => __('project.database error'), "msgClass" => "alert-danger"]);
 			}
 	    }
 	    return $result;
@@ -101,7 +95,7 @@ class ProjectController extends Controller
         $skillsModel = new Skills();
 		$skillsTree = $skillsModel->getJsonStr();
 
-		$oldOrderField = $request->session()->get('projectsOrder','users.name');
+		$oldOrderField = $request->session()->get('projectsOrder','projects.name');
 		$oldOrderDir = $request->session()->get('projectsOrderDir','ASC');
 		$orderField = $request->input('orderfield', $oldOrderField);
 		$orderDir = $request->input('orderdir', $oldOrderDir);
@@ -125,15 +119,14 @@ class ProjectController extends Controller
 	
 	/**
 	* project adatok megjelenítése
-	* @param Request $request   - back paraméter érkezhet
+	* @param Request $request   
 	* @param int $id
 	* @return void
 	*/
 	public function show(Request $request, int $id) {
 	        $modelProject = new Projects();
 	        $project = $modelProject->fullGet($id);
-	        $result = view('projectshow',["project" => $project, 
-	                                      "back" => $request->input('back','')]);
+	        $result = view('projectshow',["project" => $project]);
 	    return $result;
 	}
 	

@@ -8,6 +8,8 @@
 	    	@include('navbar')
 	    	@include('popup');
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
+           		<h2>{{ env('APP_NAME') }}</h2>	
+            	<img src="/images/logo.png" class="logo" />
 				@if (count($errors) > 0)
 				   <div class = "alert alert-danger">
 				      <ul>
