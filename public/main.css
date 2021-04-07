@@ -42,7 +42,8 @@ a {display:inline-block; width:auto;}
 }
 #cookieDisable { text-align:right}
 	
-	
+.avatar {width:30px}
+.bigAvatar {width:80px}	
 
 @media (min-width: 768px) {
 	.navbar-toggler {display:none} 

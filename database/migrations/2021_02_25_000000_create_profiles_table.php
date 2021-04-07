@@ -13,11 +13,11 @@ class CreateProfileTable extends Migration
      */
     public function up()
     {
-        Schema::create('profile', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
 			$table->id();
             $table->boolean('sysadmin');
             $table->boolean('voluntary');
-            $table->boolean('web_site_owner');
+            $table->boolean('project_owner');
             $table->text('publicinfo');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateProfileTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profile');
+        Schema::dropIfExists('profiles');
     }
 }

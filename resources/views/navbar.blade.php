@@ -1,26 +1,10 @@
 <?php
-
-    use App\Models\Profile;
-    
-    // profile adatmodel    
-    $model = new Profile();
-    
-    // ha csak egy regisztrált user van, akkor az legyen sysadmin
-    $users = DB::select('select id from users order by id limit 2');
-    if (count($users) == 1) {
-        $profile = $model->getNyId($users[0]->id);
-        $profile->sysadmin = 1;
-        $model->saveRec($profile);
-    }
-
 	// Ha user'avatar nincs megadva akkor próbáljunk gravatar -t használni,
-	// ha profil rekordja nincs, most létrehozzuk
 	if (Auth::user()) {
 		if ((!isset(Auth::user()->avatar)) | (Auth::user()->avatar == '')) {
 			Auth::user()->avatar = 'https://gravatar.com/avatar/'.md5(Auth::user()->email).
 			'?default='.urlencode(URL::to('/').'/images/noavatar.png');
 		}
-		$profile = $model->getById(Auth::user()->id);
 	}
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -36,10 +20,10 @@
 	        	{{ __('navbar.home') }} <span class="sr-only">(current)</span></a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="{{ \URL::to('/construction') }}"> {{ __('navbar.sites') }} </a>
+	        <a class="nav-link" href="{{ \URL::to('/projects') }}"> {{ __('navbar.projects') }} </a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="{{ \URL::to('/construction') }}"> {{ __('navbar.volunteers') }} </a>
+	        <a class="nav-link" href="{{ \URL::to('/profiles') }}"> {{ __('navbar.volunters') }} </a>
 	      </li>
 	    </ul>
     </div>
@@ -56,12 +40,6 @@
 		           	<a href="{{ \URL::to('/profileform') }}" class="text-sm text-gray-700 underline">
 					<em class="fa fa-id-card"></em> {{ __('navbar.profile') }}</a>
 				  </div>
-		          @if ($profile->sysadmin == 1)
- 	              <div class="nav-subitem">	
-		            <a href="{{ \URL::to('/profilesysadmins') }}" class="text-sm text-gray-700 underline">
-		            <em class="fa fa-key"></em> {{ __('navbar.sysadmins') }} </a>
-		          </div>  
-		          @endif
  	              <div class="nav-subitem">	
 		            <a href="#" onclick="jQuery('#logoutForm').submit()" class="text-sm text-gray-700 underline">
 		            <em class="fa fa-sign-in-alt"></em> {{ __('navbar.logout') }} </a>
