@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-    	@include('htmlhead')
-    </head>
-    <body class="antialiased">
-        <div id="app" class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-	    	@include('navbar')
+@extends('layouts.app')
+@section('content')
+<div>
 	    	@include('popup');
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
            		<h2>{{ env('APP_NAME') }}</h2>	
@@ -25,9 +20,6 @@
 					</li>
   					<li>
   						<a href="{{ \URL::to('/profileprojects/'.$profile->id) }}">{{ __('profile.linkedProjects') }}</a>
-  					</li>
-  					<li>
-  						<a href="{{ \URL::to('/profileevaluations/'.$profile->id) }}">{{ __('profile.evaluations') }}</a>
   					</li>
 				</ul>
                 <div class="profileForm">
@@ -90,7 +82,7 @@
                         	@endforeach
 		                </div>
 	                    <div class="form-group">
-							<a href="/construction" class="btn bt-secondary">
+							<a href="/email" class="btn bt-secondary">
 								<em class="fa fa-envelope"></em>
 								{{ __('profile.sendEmail') }}
 							</a>
@@ -104,7 +96,5 @@
                     <p>Saját adataidat a "profil" menüpontban módosíthatod.</p>
                 </div>
             </div>
-   			@include('footer')
-        </div>
-    </body>
-</html>
+</div>
+@endsection

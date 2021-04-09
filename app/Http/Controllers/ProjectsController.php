@@ -24,11 +24,18 @@ class ProjectsController extends Controller
 	    $result = '';
 	    $user = \Auth::user();
 	    if (!$user) {
-	        $result = view('welcome',["msg" => __('project.notlogged'), "msgClass" => "alert-danger"]);
+	    	if ($id > 0) {
+		        return $this->show($request, $id);
+	    	} else {
+		        $result = view('welcome',["msg" => __('project.notlogged'), "msgClass" => "alert-danger"]);
+	    	}
 	    } else {
 	        $modelProject = new Projects();
 	        if ($id > 0) {
 	        	$project = $modelProject->fullGet($id);
+	        	if ($project->user_id != \Auth::user()->id) {
+			        return $this->show($request, $id);
+	        	}
 	        } else {
 				$project = new \stdClass();
 				$project->id = 0;	        
@@ -45,7 +52,7 @@ class ProjectsController extends Controller
 			$skills = new \stdClass();
 			foreach ($project->skills as $project_skill) {
 				$skill_id = $project_skill->id;
-				$skills->$skill_id = $project_skill->level;			
+				$skills->$skill_id = '';			
 			}	        
 	        $skillsModel = new Skills();
 	        $result = view('project',["project" => $project,
@@ -59,9 +66,9 @@ class ProjectsController extends Controller
 	/**
 	* project képernyő tárolása
 	* @param Request $request - project képernyő látható adatai és  skills rejtet mező
-	* @return string full HTML page
+	* @return view
 	*/
-	public function save(Request $request): string {
+	public function save(Request $request) {
 		
 		/*		
 		$validated = $request->validate([
@@ -76,12 +83,23 @@ class ProjectsController extends Controller
 	    } else {
 	    	
 	    	// ha modositás (id > 0) akkor csak azt modosithatja, ahol Ő a projektgazda
+	    	if ($request->input('id') > 0) {
+				if ($request->input('id') != $user->id) {
+					$msg = __('project.access violation');
+					$msgClass = "alert-danger";
+					$result = $this->indexPaging($request, $msg, $msgClass);
+				}	    	
+	    	}
 			
 			$projectModel = new Projects();
 			if ($projectModel->saveFormData($user, $request)) {
-		        $result = view('welcome',["msg" => __('project.saved'), "msgClass" => "alert-success"]);
+				$msg = __('project.saved');
+				$msgClass = "alert-success";
+				$result = $this->indexPaging($request, $msg, $msgClass);
 			} else {
-		        $result = view('welcome',["msg" => __('project.database error'), "msgClass" => "alert-danger"]);
+				$msg = __('project.database error');
+				$msgClass = "alert-danger";
+				$result = $this->indexPaging($request, $msg, $msgClass);
 			}
 	    }
 	    return $result;
@@ -90,8 +108,11 @@ class ProjectsController extends Controller
 	/**
 	* projektek Böngésző
 	* @param Request $request - page paramétert is tartalmazhat
+	* @param string $msg
+	* @param string $msgClass
+	* @return view
 	*/	
-	public function indexPaging(Request $request)	{
+	public function indexPaging(Request $request, string $msg = '', string $msgClass = '')	{
         $skillsModel = new Skills();
 		$skillsTree = $skillsModel->getJsonStr();
 
@@ -114,7 +135,9 @@ class ProjectsController extends Controller
 		$projects = $modelProjects->paginateOrderFilter(5, $orderField, $orderDir, $filter);		
 	    return view('project-index-paging',['skillsTree' => $skillsTree,
 	    									'projects' => $projects,
-	    									'page' => $request->input('page','')]);
+	    									'page' => $request->input('page',''),
+	    									'msg' => $msg,
+	    									'msgClass' => $msgClass]);
 	}
 	
 	/**
@@ -124,9 +147,10 @@ class ProjectsController extends Controller
 	* @return void
 	*/
 	public function show(Request $request, int $id) {
-	        $modelProject = new Projects();
-	        $project = $modelProject->fullGet($id);
-	        $result = view('projectshow',["project" => $project]);
+	    $modelProject = new Projects();
+	    $project = $modelProject->fullGet($id);
+   	    $request->session()->put('emailTo',$project->user_id);
+	    $result = view('projectshow',["project" => $project]);
 	    return $result;
 	}
 	

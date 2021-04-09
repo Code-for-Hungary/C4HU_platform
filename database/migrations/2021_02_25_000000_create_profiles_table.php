@@ -18,7 +18,7 @@ class CreateProfileTable extends Migration
             $table->boolean('sysadmin');
             $table->boolean('voluntary');
             $table->boolean('project_owner');
-            $table->text('publicinfo');
+            $table->text('publicinfo')->nullable();
             $table->timestamps();
         });
     }

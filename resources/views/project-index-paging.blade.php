@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-    	@include('htmlhead')
-    </head>
-    <body class="antialiased">
-        <div id="app" class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-	    	@include('navbar')
+@extends('layouts.app')
+@section('content')
+<div>
 	    	@include('popup');
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
            		<h2>{{ env('APP_NAME') }}</h2>	
@@ -80,12 +75,13 @@
 						        @foreach ($projects as $project)
 						        <tr>
 						            <td><img class="avatar" src="{{ $project->avatar }}" /></td>
-						            <td><a href="/projecthow/{{ $project->id }}">
+						            <td><a href="/project/{{ $project->id }}">
+						            	<em class="fa fa-hand-point-right"></em>
 						            	{{ $project->name }}
 						            	</a>
 						            	@if ($project->website != '') 
 						            	<br />
-						            	<a href="{{ $project->website 	}}" target="_new">web site</a>
+						            	<a href="{{ $project->website }}" target="_new">{{ $project->website }}</a>
 						            	@endif
 						            </td>
 						            <td>{{ __('project.'.$project->status) }}</td>
@@ -108,7 +104,6 @@
 	                </div>
 	            </div>
             </div>
-        </div>  
 		<script src="js/tree.js"></script>
         <script type="text/javascript">
         $(function() {
@@ -139,5 +134,5 @@
                 	});
                 });	
          </script>              
-    </body>
-</html>
+</div>
+@endsection

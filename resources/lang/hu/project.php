@@ -11,10 +11,14 @@ return [
     "description" => "leírás",
     "avatar" => "avatar kép url",
     "status" => "státusz",
+    "organisation" => "szervezet",
+    "website" => "web oldal url",
     "plan" => "terv",
     "task" => "feladat",
+    "ownerUser" => "projekt gazda",
     "inprogress" => "folyamatban",
     "suspended" => "felfüggesztve",
+    "contributors" => "közremüködők",
     "closed" => "elkészült",
     "canceled" => "megszakítva",
     "deadline" => "határidő",
@@ -25,5 +29,7 @@ return [
     "notrecords" => "nincs ilyen",
     "database error" => "Hiba az adatbázisba tárolás közben",
     "back" => "Vissza",
-    "add" => "Új felvitel"
+    "add" => "Új felvitel",
+    "aspirant" => "jelentkezek önkéntesnek",
+    "sendEmail" => "E-mail küldése"
 ];

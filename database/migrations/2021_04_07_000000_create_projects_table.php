@@ -15,14 +15,14 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
 			$table->id();
-            $table->string('name')->comment('projekt rövid megnevezése');
-            $table->text('description')->comment('projekt leírása');
-            $table->string('organisation')->comment('projekt gazda szervezet');
-            $table->string('website')->comment('szervezet web site-ja');
-            $table->string('avatar')->comment('projekt vagy szervezet avatar url');
+            $table->string('name')->nullable()->comment('projekt rövid megnevezése');
+            $table->text('description')->nullable()->comment('projekt leírása');
+            $table->string('organisation')->nullable()->comment('projekt gazda szervezet');
+            $table->string('website')->nullable()->comment('szervezet web site-ja');
+            $table->string('avatar')->nullable()->comment('projekt vagy szervezet avatar url');
             $table->date('deadline')->nullable()->comment('határidő');
-            $table->string('status')->comment('plan|task|inprogress|suspended|closed|canceled');
-            $table->biginteger('user_id')->comment('project gazda user');
+            $table->string('status')->nullable()->comment('plan|task|inprogress|suspended|closed|canceled');
+            $table->biginteger('user_id')->nullable()->comment('project gazda user');
             $table->timestamps();
         });
 		\DB::statement("ALTER TABLE `projects` comment 'projektek'");

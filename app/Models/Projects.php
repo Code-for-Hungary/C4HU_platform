@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Project_skills;
 use App\Models\User;
 
 class Projects extends Model
@@ -59,27 +60,28 @@ class Projects extends Model
 		$result = false;
 		\DB::transaction(function() use ($user, $request, &$result) {
 		    	// tárolás a projects táblába
-		        $projectModel = new Projects();
-		        $projects->id = $request->input('id',0);
-		        $projects->name = $request->input('name','');
-		        $projects->description = $request->input('description','');
-		        $projects->avatar = $request->input('avatar','');
-		        $projects->website = $request->input('website','');
-		        $projects->organisation = $request->input('organisation','');
-		        $projects->deadline = $request->input('deadline','');
-		        $projects->status = $request->input('status','');
-		        $projects->user_id = \Auth::user()->id;
-		        $projects->save();
-		        
+		        $project = new Projects();
+		        if ($request->input('id') > 0) {
+		        	$project = $project->where('id','=',$request->input('id'))->first();
+		        }
+		        $project->id = $request->input('id',0);
+		        $project->name = $request->input('name','');
+		        $project->description = $request->input('description','');
+		        $project->avatar = $request->input('avatar','');
+		        $project->website = $request->input('website','');
+		        $project->organisation = $request->input('organisation','');
+		        $project->deadline = $request->input('deadline','');
+		        $project->status = $request->input('status','');
+		        $project->user_id = \Auth::user()->id;
+	        	$project->save();
 		        // tárolás a project_skills táblába
 		        $project_skillsModel = new Project_skills();
-		        $project_skillsModel->where('project_id','=',$projects->id)->get()->delete();
+		        $project_skillsModel->where('project_id','=',$project->id)->delete();
 		        $skills = JSON_decode($request->input('skills','{}'));
 		        foreach ($skills as $key => $value) {
 			        $project_skillsModel = new Project_skills();
 		        	$project_skillsModel->skill_id = $key;
-		        	$project_skillsModel->project_id = $user->id;
-		        	$project_skillsModel->level = $value;
+		        	$project_skillsModel->project_id = $project->id;
 		        	$project_skillsModel->save();
 		        }
 		        $result = true;

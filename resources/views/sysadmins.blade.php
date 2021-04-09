@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-    	@include('htmlhead')
-    </head>
-    <body class="antialiased">
-        <div id="app" class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-	    	@include('navbar')
+@extends('layouts.app')
+@section('cintent')
+<div>
             <div class="pageBody sysadmins">
 				<h2>{{ __('profile.sysadmins') }}</h2>
 				<table class="table table-stripped">
@@ -42,7 +37,5 @@
 					</button>
 				</form>
             </div>
-   			@include('footer')
-        </div>
-    </body>
-</html>
+</div>
+@endsection

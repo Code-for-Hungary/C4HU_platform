@@ -67,5 +67,10 @@ Route::get('projects', 'App\Http\Controllers\ProjectsController@indexPaging');
 Route::get('project/{id}', 'App\Http\Controllers\ProjectsController@form');
 Route::get('projectshow/{id}', 'App\Http\Controllers\ProjectsController@show');
 Route::post('project', 'App\Http\Controllers\ProjectsController@save');
+
+Route::get('email', 'App\Http\Controllers\EmailController@form');
+Route::post('email', 'App\Http\Controllers\EmailController@send');
+
+   
    
 
