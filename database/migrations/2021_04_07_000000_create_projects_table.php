@@ -22,7 +22,7 @@ class CreateProjectsTable extends Migration
             $table->string('avatar')->nullable()->comment('projekt vagy szervezet avatar url');
             $table->date('deadline')->nullable()->comment('határidő');
             $table->string('status')->nullable()->comment('plan|task|inprogress|suspended|closed|canceled');
-            $table->biginteger('user_id')->nullable()->comment('project gazda user');
+            $table->biginteger('user_id')->unsigned()->comment('project gazda user');
             $table->timestamps();
         });
 		\DB::statement("ALTER TABLE `projects` comment 'projektek'");

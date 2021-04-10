@@ -14,8 +14,8 @@ class CreateProfileSkillsTable extends Migration
     public function up()
     {
         Schema::create('profile_skills', function (Blueprint $table) {
-            $table->biginteger('profile_id')->comment('pointer a profiles táblára');
-            $table->biginteger('skill_id')->comment('pointer a skills táblára');
+            $table->biginteger('profile_id')->unsigned()->comment('pointer a profiles táblára');
+            $table->biginteger('skill_id')->unsigned()->comment('pointer a skills táblára');
             $table->string('level')->comment('szint: interested|student|junior|senior|mentor')
             $table->timestamps();
             $table->index('profile_id');

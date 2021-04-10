@@ -1,10 +1,10 @@
 <?php
 return [
     "sendEmail" => "Email küldése",
-    "to" => "címzett",
-    "from" => "feladó",
-    "subject" => "tárgy",
-    "body" => "szöveg",
+    "to" => "Címzett",
+    "from" => "Feladó",
+    "subject" => "Tárgy",
+    "body" => "Szöveg",
     "notfound" => "Nincs címzett.",
     "back" => "Mégsem",
     "send" => "Küldés",

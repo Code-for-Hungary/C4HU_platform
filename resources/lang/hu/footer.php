@@ -7,7 +7,7 @@ return [
 	"licence" => "Licensz",
 	"bugreport" => "Hibajelzés",
 	"source" => "Forrás kód",
-	"cookieInfo" => "Ennek a web oldalnak a hsználatához, szükség van két un. 'munkamenet csoki' kezelés engedélyezésére. Lásd az adatkezelési leírást!",
+	"cookieInfo" => "Ennek a web oldalnak a használatához, szükség van két un. 'munkamenet csoki' kezelés engedélyezésére. Lásd az adatkezelési leírást!",
 	"cookieEnabled" => "Munkamenet csoki kezelés engedélyezve",
 	"cookieEnable" => "Csoki kezelés engedélyezése",
 	"cookieDisable" => "Csoki kezelés letiltása"

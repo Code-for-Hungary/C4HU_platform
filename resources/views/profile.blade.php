@@ -150,10 +150,10 @@
                		<p id="skillLevelTemplate">
 		                	<label style="width:50%; text-align:right"></label>
 		                	<select>
-		                		<option>student</option>
-		                		<option>junior</option>
-		                		<option>senior</option>
-		                		<option>mentor</option>
+		                		<option value="student">{{ __('profile.student') }}</option>
+		                		<option value="junior">{{ __('profile.junior') }}</option>
+		                		<option value="senior">{{ __('profile.senior') }}</option>
+		                		<option value="mentor">{{ __('profile.mentor') }}</option>
 		                	</select>
                		</p> 
                	</div>

@@ -71,6 +71,14 @@ Route::post('project', 'App\Http\Controllers\ProjectsController@save');
 Route::get('email', 'App\Http\Controllers\EmailController@form');
 Route::post('email', 'App\Http\Controllers\EmailController@send');
 
+Route::get('contributoradd/{project_id}', 'App\Http\Controllers\ContributorsController@add');
+Route::get('contributors/{project_id}', 'App\Http\Controllers\ContributorsController@indexPaging');
+Route::get('contributorprojects/{user_id}', 'App\Http\Controllers\ContributorsController@projects');
+Route::get('contributor/{project_id}/{user_id}', 'App\Http\Controllers\ContributorsController@form');
+Route::get('contributorshow/{project_id}/{user_id}', 'App\Http\Controllers\ContributorsController@form');
+Route::post('contributor', 'App\Http\Controllers\ContributorsController@save');
+
+
    
    
 

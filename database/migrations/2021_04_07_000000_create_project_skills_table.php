@@ -14,8 +14,8 @@ class CreateProjectSkillsTable extends Migration
     public function up()
     {
         Schema::create('project_skills', function (Blueprint $table) {
-            $table->biginteger('project_id')->comment('pointer a projects táblára');
-            $table->biginteger('skill_id')->comment('pointer a skills táblára');
+            $table->biginteger('project_id')->unsigned()->comment('pointer a projects táblára');
+            $table->biginteger('skill_id')->unsigned()->comment('pointer a skills táblára');
             $table->timestamps();
             $table->index('project_id');
             $table->index('skill_id');

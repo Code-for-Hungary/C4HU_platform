@@ -19,7 +19,7 @@
 						<a href="#">{{ __('project.info') }}</a>
 					</li>
   					<li>
-  						<a href="{{ \URL::to('/contibutors/'.$project->id) }}">{{ __('project.contributors') }}</a>
+  						<a href="{{ \URL::to('/contributors/'.$project->id) }}">{{ __('project.contributors') }}</a>
   					</li>
 				</ul>
                 <div class="projectForm">
@@ -126,6 +126,7 @@
 		                </div>
 	                    <div class="form-group">
 	                    	<button type="button" class="btn btn-primary" id="btnSave">
+	                    		<em class="fa fa-check"></em>
 	                    		{{ __('project.save') }}
 	                    	</button>
 						</div>

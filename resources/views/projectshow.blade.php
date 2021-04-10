@@ -19,7 +19,7 @@
 						<a href="#">{{ __('project.info') }}</a>
 					</li>
   					<li>
-  						<a href="{{ \URL::to('/contibutors/'.$project->id) }}">{{ __('project.contributors') }}</a>
+  						<a href="{{ \URL::to('/contributors/'.$project->id) }}">{{ __('project.contributors') }}</a>
   					</li>
 				</ul>
                 <div class="projectShow">
@@ -74,7 +74,7 @@
                         </div>	
 	                    <div class="form-group">
 	                    	@if (\Auth::user())
-	                    	<a class="btn btn-secondary" href="/aspirant">
+	                    	<a class="btn btn-secondary" href="/contributoradd/{{ $project->id }}">
 	                    		<em class="fa fa-hand-paper"></em>
 	                    		{{ __('project.aspirant') }}
 	                    	</a>

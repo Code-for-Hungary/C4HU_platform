@@ -15,6 +15,6 @@ return [
 
     'failed' => 'Érvénytelen bejelentkezési kisérlet.',
     'password' => 'Hibás jelszó.',
-    'throttle' => 'Túl sok híbás kisérlet. Próbéld újra :seconds másodperc múlva!',
+    'throttle' => 'Túl sok hibás kisérlet. Próbáld újra :seconds másodperc múlva!',
 
 ];
