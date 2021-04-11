@@ -5,7 +5,7 @@
 	    	@include('popup');
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
            		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="/images/logo.png" class="logo" />
+            	<img src="{{ url('/') }}/images/logo.png" class="logo" />
 	            <div class="row">
 	            	<h3>{{ $project->name }} ( {{ __('contributor.'.$project->status) }} )</h3>
 	            	<h4>{{ __('contributor.contributors') }}</h4>
@@ -13,7 +13,7 @@
 						    <thead>
 						        <th></th>
 						        <th>
-						        	<a href="/contributors?page=1&orderfield=user_name">
+						        	<a href="{{ url('/') }}/contributors/{{ $project->id }}?page=1&orderfield=user_name">
 						        	{{ __('contributor.name') }}
 						        	@if ($contributors->orderField == 'user_name')
 						        		@if ($contributors->orderDir == 'ASC')
@@ -25,7 +25,7 @@
 						        	</a>
 						        </th>
 						        <th>
-						        	<a href="/contributors?page=1&orderfield=contributors.status">
+						        	<a href="{{ url('/') }}/contributors/{{ $project->id }}?page=1&orderfield=contributors.status">
 						        	{{ __('contributor.status') }}
 						        	@if ($contributors->orderField == 'contributors.status')
 						        		@if ($contributors->orderDir == 'ASC')
@@ -37,7 +37,7 @@
 						        	</a>
 						        </th>
 						        <th>
-						        	<a href="/contributors?page=1&orderfield=contributors.grade">
+						        	<a href="{{ url('/') }}/contributors/{{ $project->id }}?page=1&orderfield=contributors.grade">
 						        	{{ __('contributor.grade') }}
 						        	@if ($contributors->orderField == 'contributors.grade')
 						        		@if ($contributors->orderDir == 'ASC')
@@ -59,7 +59,7 @@
 						        @foreach ($contributors as $contributor)
 						        <tr>
 						            <td><img class="avatar" src="{{ $contributor->user_avatar }}" /></td>
-						            <td><a href="/contributor/{{ $contributor->project_id }}/{{ $contributor->user_id }}">
+						            <td><a href="{{ url('/') }}/contributor/{{ $contributor->project_id }}/{{ $contributor->user_id }}">
 						            	{{ $contributor->user_name }}
 						            	</a>
 						            	</td>

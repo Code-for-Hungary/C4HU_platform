@@ -111,6 +111,8 @@ A public könyvtár tartalmát (alkönyvtárakkal együtt) is a document_root -b
 
 Az index.php -t modositsuk, töröljünk minden file utvonalból a "../" részt.
 
+Mindkét módszer setén fontos, hogy a "storage" mappát kivéve a többi csak olvasható legyen,
+a "storage" legyen írható is a web szerver számára.
 
 # project alapja 
 [https://www.soengsouy.com/2020/12/login-with-laravel-8-and-socialite.html](https://www.soengsouy.com/2020/12/login-with-laravel-8-and-socialite.html)

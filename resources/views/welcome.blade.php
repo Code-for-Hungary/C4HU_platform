@@ -23,7 +23,7 @@
 				    <div class="welcome-container">
 				       	<a name="container"></a>
 				       		<h2>Code for Hungary platform</h2>
-				       		<img src="/images/logo.png" class="bigAvatar" style="float:left" />
+				       		<img src="{{ url('/') }}/images/logo.png" class="bigAvatar" style="float:left" />
 							<p>NGO -k új projektjeik kialakításához, meglévő  informatikai  
 								funkcióik fejlesztéséhez, üzemeltetéséhez önkéntesek toborzása, támogatás nyújtása. 
 								Az igények és a jelentkező önkéntesek egymásra találásának elősegítése.

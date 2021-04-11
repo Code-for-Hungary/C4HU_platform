@@ -4,7 +4,7 @@
 	    	@include('popup');
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
            		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="/images/logo.png" class="logo" />
+            	<img src="{{ url('/') }}/images/logo.png" class="logo" />
 				@if (count($errors) > 0)
 				   <div class = "alert alert-danger">
 				      <ul>
@@ -74,11 +74,11 @@
                         </div>	
 	                    <div class="form-group">
 	                    	@if (\Auth::user())
-	                    	<a class="btn btn-secondary" href="/contributoradd/{{ $project->id }}">
+	                    	<a class="btn btn-secondary" href="{{ url('/') }}/contributoradd/{{ $project->id }}">
 	                    		<em class="fa fa-hand-paper"></em>
 	                    		{{ __('project.aspirant') }}
 	                    	</a>
-	                    	<a class="btn btn-secondary" href="/email">
+	                    	<a class="btn btn-secondary" href="{{ url('/') }}/email">
 	                    		<em class="fa fa-envelope"></em>
 	                    		{{ __('project.sendEmail') }}
 	                    	</a>

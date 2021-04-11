@@ -16,7 +16,7 @@
   	<div style="display:inline-block; width:auto">
 	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item active">
-	        <a class="nav-link" href="/"><em class="fa fa-home"></em> 
+	        <a class="nav-link" href="{{ url('/') }}/"><em class="fa fa-home"></em> 
 	        	{{ __('navbar.home') }} <span class="sr-only">(current)</span></a>
 	      </li>
 	      <li class="nav-item">
@@ -75,7 +75,7 @@
 	</div>	
 @endif
 <div style="display:none">
-	<form id="logoutForm" method="post" action="/logout">
+	<form id="logoutForm" method="post" action="{{ url('/') }}/logout">
 		@csrf
 	</form>
 </div>

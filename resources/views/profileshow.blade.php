@@ -4,7 +4,7 @@
 	    	@include('popup');
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
            		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="/images/logo.png" class="logo" />
+            	<img src="{{ url('/') }}/images/logo.png" class="logo" />
 				@if (count($errors) > 0)
 				   <div class = "alert alert-danger">
 				      <ul>
@@ -25,7 +25,7 @@
                 <div class="profileForm">
                 	<form class="form">
 		            	<h2>{{ env('APP_NAME') }}</h2>
-        		    	<img src="/images/logo.png" class="logo" />
+        		    	<img src="{{ url('/') }}/images/logo.png" class="logo" />
 		            	<h3>{{ __('profile.profile') }}</h3>
 	                    <div class="form-group">
 	                    	{{ $profile->name }}
@@ -82,7 +82,7 @@
                         	@endforeach
 		                </div>
 	                    <div class="form-group">
-							<a href="/email" class="btn bt-secondary">
+							<a href="{{ url('/') }}/email" class="btn bt-secondary">
 								<em class="fa fa-envelope"></em>
 								{{ __('profile.sendEmail') }}
 							</a>

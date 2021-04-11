@@ -4,7 +4,7 @@
         <form method="POST" action="{{ route('login') }}" id="frmLogin">
             @csrf
             <div class="text-center">
-                <a href="/" aria-label="Space">
+                <a href="{{ url('/') }}/" aria-label="Space">
                     <img class="mb-3 logo-image" src="{{URL::to('images/logo.png')}}" alt="Logo" width="60" height="60">
                 </a>
             </div>

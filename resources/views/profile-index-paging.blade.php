@@ -4,7 +4,7 @@
 	    	@include('popup');
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
            		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="/images/logo.png" class="logo" />
+            	<img src="{{ url('/') }}/images/logo.png" class="logo" />
 	            <div class="row">
 	                <div class= "col-sm-3">
 	                	<h2>{{ __('profile.filter') }}</h2>
@@ -16,7 +16,7 @@
 						    <thead>
 						        <th></th>
 						        <th>
-						        	<a href="/profiles?page=1&orderfield=users.name">
+						        	<a href="{{ url('/') }}/profiles?page=1&orderfield=users.name">
 						        	{{ __('profile.name') }}
 						        	@if ($profiles->orderField == 'users.name')
 						        		@if ($profiles->orderDir == 'ASC')
@@ -28,7 +28,7 @@
 						        	</a>
 						        </th>
 						        <th>
-						        	<a href="/profiles?page=1&orderfield=profiles.publicinfo">
+						        	<a href="{{ url('/') }}/profiles?page=1&orderfield=profiles.publicinfo">
 						        	{{ __('profile.publicinfo') }}
 						        	@if ($profiles->orderField == 'profiles.publicinfo')
 						        		@if ($profiles->orderDir == 'ASC')
@@ -40,7 +40,7 @@
 						        	</a>
 						        </th>
 						        <th>
-						        	<a href="/profiles?page=1&orderfield=skills">
+						        	<a href="{{ url('/') }}/profiles?page=1&orderfield=skills">
 						        	{{ __('profile.skills') }}
 						        	@if ($profiles->orderField == 'skills')
 						        		@if ($profiles->orderDir == 'ASC')
@@ -62,7 +62,7 @@
 						        @foreach ($profiles as $profile)
 						        <tr>
 						            <td><img class="avatar" src="{{ $profile->avatar }}" /></td>
-						            <td><a href="/profileshow/{{ $profile->id }}">
+						            <td><a href="{{ url('/') }}/profileshow/{{ $profile->id }}">
 						            	{{ $profile->name }}
 						            	</a>
 						            	</td>
@@ -100,7 +100,7 @@
                 			if (this.doRedirect) {
                 				let s = JSON.stringify(this.values);
                 				s = encodeURI(s.replaceAll(/\"/g,''));
-                				window.setTimeout('location="/profiles?page=1&filter='+s+'"',500);
+                				window.setTimeout('location="{{ url('/') }}/profiles?page=1&filter='+s+'"',500);
                 			}	
                 		},	
                 		loaded: function() {
