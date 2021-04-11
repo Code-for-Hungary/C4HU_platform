@@ -104,13 +104,12 @@ class ContributorsController extends Controller {
 	/**
 	* közremüködők Böngésző
 	*/	
-	public function indexPaging(Request $request, $project_id, $msg = '', $msgClass = '')	{
-
-		$oldOrderField = $request->session()->get('contributorsOrder','users.name');
+	public function indexPaging(Request $request, $project_id, string $msg = '', string $msgClass = '')	{
+		$oldOrderField = $request->session()->get('contributorsOrder','contributors.user_name');
 		$oldOrderDir = $request->session()->get('contributorsOrderDir','ASC');
 		$orderField = $request->input('orderfield', $oldOrderField);
 		$orderDir = $request->input('orderdir', $oldOrderDir);
-		$filter = ['project_id', '=', $project_id];		
+		$filter = ['contributors.project_id', '=', (int)$project_id];		
 		if ($oldOrderField == $request->input('orderfield')) {
 			if ($orderDir == 'ASC') {
 				$orderDir = 'DESC';
@@ -127,6 +126,37 @@ class ContributorsController extends Controller {
 	    									'project' => $project,
 	    									'page' => $request->input('page',''),
 	    									'msg' => $msg, 'msgClass' => $msgClass]);
+	}
+	
+	public function profileprojects(Request $request, int $user_id, string $msg = '',  string $msgClass = '') {
+		$oldOrderField = $request->session()->get('cprojectsOrder','projects.name');
+		$oldOrderDir = $request->session()->get('cprojectsOrderDir','ASC');
+		$orderField = $request->input('orderfield', $oldOrderField);
+		$orderDir = $request->input('orderdir', $oldOrderDir);
+		$filter = ['contributors.user_id', '=', (int)$user_id];		
+		if ($oldOrderField == $request->input('orderfield')) {
+			if ($orderDir == 'ASC') {
+				$orderDir = 'DESC';
+			} else {
+				$orderDir = 'ASC';
+			}
+		}
+		$orFilter = ['projects.user_id','=',(int)$user_id]; 
+		$request->session()->put('cprojectsOrder',$orderField);
+		$request->session()->put('cprojectsOrderDir',$orderDir);
+		$modelContributors = new Contributors();
+		$contributors = $modelContributors->paginateOrderFilter(5, $orderField, $orderDir,
+			 $filter, $orFilter);
+		$user = User::where('id','=', $user_id)->first();
+		if (!$user) {
+    	    $result = view('welcome',["msg" => __('contributot.notfound'), "msgClass" => "alert-danger"]);
+		} else {			
+	    	$result = view('profileprojects',['contributors' => $contributors,
+	    									'user' => $user,
+	    									'page' => $request->input('page',''),
+	    									'msg' => $msg, 'msgClass' => $msgClass]);
+		}	    	
+		return $result;								
 	}
 	
 	/**

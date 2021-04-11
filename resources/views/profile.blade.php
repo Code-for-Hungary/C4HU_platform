@@ -21,9 +21,6 @@
   					<li>
   						<a href="{{ \URL::to('/profileprojects/'.\Auth::user()->id) }}">{{ __('profile.linkedProjects') }}</a>
   					</li>
-  					<li>
-  						<a href="{{ \URL::to('/profileevaluations/'.\Auth::user()->id) }}">{{ __('profile.evaluations') }}</a>
-  					</li>
 				</ul>
                 <div class="profileForm">
                 	<form method="POST" action="{{ \URL::to('/profilesave') }}" id="frmProfile">

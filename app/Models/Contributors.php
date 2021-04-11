@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Projects;
 use App\Models\User;
 
 class Contributors extends Model
@@ -19,29 +20,35 @@ class Contributors extends Model
     * használja a request->input('page') -t is
     * @return paginator object + ->orderField, ->orderDir, ->filter 
     */
-    public function paginateOrderFilter(int $limit, string $orderField, string $orderDir, array $filter) {
-        $query = \DB::table('contributors');
-    	$query->leftJoin('users','contributors.user_id','=','users.id')
-    	      ->leftJoin('projects','contributors.project_id','=','projects.id')
+    public function paginateOrderFilter(int $limit, string $orderField, string $orderDir, 
+    	array $filter, 
+    	array $orFilter = ['contributors.project_id','=',0]) {
+        $query = \DB::table('projects');
+    	$query->leftJoin('contributors','projects.id','=','contributors.project_id')
+    		  ->leftJoin('users','contributors.user_id','=','users.id')
     		  ->select(['contributors.project_id',
     		     'contributors.user_id',
-    		     'projects.name',
-    		     'projects.avatar',
-    		     'projects.status as projectStatus',
+    		     'projects.name as project_name',
+    		     'projects.avatar as project_avatar',
+    		     'projects.status as project_status',
     		     'projects.deadline',
     			 'users.avatar as user_avatar',
     			 'users.name as user_name',
     			 'contributors.status',
     			 'contributors.grade'])
-    			 ->orderBy($orderField, $orderDir);
-   		if ($filter != []) {
-			$query->where($filter[0], $filter[1], $filter[2]);
-   		}		     
-    	$projects = $query->paginate($limit);
-    	$projects->orderField = $orderField; 
-    	$projects->orderDir = $orderDir;
-    	$projects->filter = $filter;
-    	return $projects; 
+   		      ->orderBy($orderField, $orderDir)
+			  ->where($filter[0],$filter[2])
+			  ->orWhere($orFilter[0], $orFilter[2]);
+    	$records = $query->paginate($limit);
+    	$records->orderField = $orderField; 
+    	$records->orderDir = $orderDir;
+    	$records->filter = $filter;
+		for ($i=0; $i<count($records); $i++) {
+			if ($records[$i]->status == '') {
+				$records[$i]->status = 'owner';
+			}		
+		}    	
+    	return $records; 
     }
     
     /**

@@ -98,8 +98,8 @@ class ProfileController extends Controller
 	        $modelProfile = new Profiles();
 	        $profile = $modelProfile->where('id','=',$user->id)->first();
 	        if ($profile->sysadmin != 1) {
-	        	// a user1@test.hu a demo site test usere, ez ne engedjük törölni
-	            if ($user->email != 'user1@test.hu') {
+	        	// a demo site test usereit ne engedjük törölni
+	            if (($user->email != 'demo@test.hu') & ($user->email != 'admin@test.hu')) {
 	               User::where('id','=',$user->id)->update([
 	                "name" => "deleted".$user->id,
 	                "email" => "deleted".$user->id."@deleted.hu",
@@ -181,19 +181,22 @@ class ProfileController extends Controller
 	            if ($action == 'del') {
 	                if ($value != $user->id) {
     	                $u = User::where('id','=',$value)->first();
-    	                if ($u) {
-		                    $oldProfileModel = new Profiles();
-	                    	$oldProfileModel->fullGet($u->id); // létrehozza ha még nincs
-	                    	$oldProfile = $oldProfileModel->where('id','=',$u->id)->first();
-    	                    $oldProfile->sysadmin = 0;
-    	                    $oldProfile->save();
-    	                    $items = $modelProfile->getSysadmins();
-    	                    $result = view('sysadmins',["items" => $items]);
-    	                } else {
-    	                    $items = $modelProfile->getSysadmins();
-    	                    $result = view('sysadmins',
-    	                        ["msg" => __("profile.notfound"), "msgClass" => "alert-danger", "items" => $items]);
-    	                }
+	    	                if ($u) {
+			                    $oldProfileModel = new Profiles();
+		                    	$oldProfileModel->fullGet($u->id); // létrehozza ha még nincs
+		                    	$oldProfile = $oldProfileModel->where('id','=',$u->id)->first();
+	    	                    $oldProfile->sysadmin = 0;
+		    	                // demo site admin-t ne engedjük levenni
+		    	                if ($u->email == 'admin@test.hu') {
+	    		                    $oldProfile->save();
+	    		                }    
+	    	                    $items = $modelProfile->getSysadmins();
+	    	                    $result = view('sysadmins',["items" => $items]);
+	    	                } else {
+	    	                    $items = $modelProfile->getSysadmins();
+	    	                    $result = view('sysadmins',
+	    	                        ["msg" => __("profile.notfound"), "msgClass" => "alert-danger", "items" => $items]);
+	    	                }
 	                } else {
 	                    $result = view('profile',["msg" => __('profile.access_violation'), "msgClass" => "alert-danger"]);
 	                }
