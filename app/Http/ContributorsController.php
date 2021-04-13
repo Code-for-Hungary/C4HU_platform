@@ -58,18 +58,13 @@ class ContributorsController extends Controller {
 			$result = $this->show($request, $project_id, $user_id);
 		} else {
 		    $project = Projects::where('id','=',$project_id)->first();
-		    // csak akkor modosithat ha a bejelentkezett user a projekt gazda
 		    if ($project) {
 		    	if ($project->user_id == $user->id) {
 		        	$modelContributor = new Contributors();
 	    	    	$contributor = $modelContributor->fullGet($project_id, $user_id);
-					// a "status == 'owner' rekord nem modosítható
-	    			if ($contributor->status == 'owner') {
-						$result = $this->show($request, $project_id, $user_id);
-	    			} else {	    	
-	        			$result = view('contributor',["contributor" => $contributor]);
-	        		}	
+	        		$result = view('contributor',["contributor" => $contributor]);
 	        	} else {
+					$result = $this->show($request, $project_id, $user_id);
 	        	}	
 		    } else {
 	    	    $result = view('welcome',["msg" => __('contributor.notfound'), "msgClass" => "alert-danger"]);
@@ -110,7 +105,7 @@ class ContributorsController extends Controller {
 	* közremüködők Böngésző
 	*/	
 	public function indexPaging(Request $request, $project_id, string $msg = '', string $msgClass = '')	{
-		$oldOrderField = $request->session()->get('contributorsOrder','user_name');
+		$oldOrderField = $request->session()->get('contributorsOrder','contributors.user_name');
 		$oldOrderDir = $request->session()->get('contributorsOrderDir','ASC');
 		$orderField = $request->input('orderfield', $oldOrderField);
 		$orderDir = $request->input('orderdir', $oldOrderDir);

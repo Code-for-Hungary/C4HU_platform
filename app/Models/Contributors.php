@@ -17,12 +17,14 @@ class Contributors extends Model
     * @param string  $orderField rendezés erre a mezőre
     * @param string  $orderDir 'ASC' vagy 'DESC'
     * @param array   $filter '['fieldName','=',value]'
+    * @param array   $orFilter '['fieldName','=',value]'  
     * használja a request->input('page') -t is
     * @return paginator object + ->orderField, ->orderDir, ->filter 
     */
     public function paginateOrderFilter(int $limit, string $orderField, string $orderDir, 
     	array $filter, 
     	array $orFilter = ['contributors.project_id','=',0]) {
+    		
         $query = \DB::table('projects');
     	$query->leftJoin('contributors','projects.id','=','contributors.project_id')
     		  ->leftJoin('users','contributors.user_id','=','users.id')
@@ -35,10 +37,9 @@ class Contributors extends Model
     			 'users.avatar as user_avatar',
     			 'users.name as user_name',
     			 'contributors.status',
-    			 'contributors.grade'])
+	   			 'contributors.grade'])
    		      ->orderBy($orderField, $orderDir)
-			  ->where($filter[0],$filter[2])
-			  ->orWhere($orFilter[0], $orFilter[2]);
+			  ->where($filter[0],$filter[2]);
     	$records = $query->paginate($limit);
     	$records->orderField = $orderField; 
     	$records->orderDir = $orderDir;

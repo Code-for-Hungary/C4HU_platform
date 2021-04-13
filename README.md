@@ -2,7 +2,7 @@
 
 státusz: fejlesztés alatt
 
-Készültség: 4%  v0.03-alpha
+Készültség: 95%  v0.04-alpha
 
 Verzió történet:
 
@@ -54,7 +54,8 @@ mysql adatbázis létrehozása utf8mb4-hungaian_ci default rendezéssel
 
 .env file editásása (mysql elérés, smtp elérés, opcionálisan github, facebook, google login konfig)
 
-php artisan migrate
+composer install
+php artisan migrate --seed
 
 ## lokális teszt futtatás
 ```
@@ -138,7 +139,7 @@ edit config/services.php  (mysql access)
 ``
 edit database/migration/.....create_users_table.php (lásd a fenti **bázis url** -ben)
 ```
-php artisan migrate
+php artisan migrate --seed
 ```
 
 edit app/Http/Controllers/auth/LoginConbtroller.php (lásd a fenti bázis url -ben)

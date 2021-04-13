@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Project_skills;
+use App\Models\Contributors;
 use App\Models\User;
 
 class Projects extends Model
@@ -24,8 +25,6 @@ class Projects extends Model
     public function paginateOrderFilter(int $limit, string $orderField, string $orderDir, string $filter) {
         $query = \DB::table('projects');
     	$query->leftJoin('users','projects.user_id','=','users.id')
-    	      ->leftJoin('project_skills','projects.id','=','project_skills.project_id')
-    	      ->leftJoin('skills','project_skills.skill_id','=','skills.id')
     		  ->select('projects.id',
     		     'projects.name',
     		     'projects.avatar',
@@ -35,18 +34,27 @@ class Projects extends Model
     		     'projects.website',
     			 'users.avatar as user_avatar',
     			 'users.name as user_name',
-    			  \DB::raw("GROUP_CONCAT(skills.name SEPARATOR ', ') as `skills`"))
-    			 ->groupBy(['projects.id','projects.name','projects.avatar',
-    		     	'projects.description','projects.status','users.avatar','users.name'])
+    			 'projects.name as skills')
+    		     ->where('projects.id','<>',0)	
     			 ->orderBy($orderField, $orderDir);
    		if ($filter != '[]') {
 			$filterArray = JSON_decode($filter);   		
-			$query->whereIn('skills.id',$filterArray);
+			$query->whereIn('project_skills.skill_id',$filterArray);
    		}		     
     	$projects = $query->paginate($limit);
-    	$projects->orderField = $orderField; 
+    	$projects->orderField = $orderField;
     	$projects->orderDir = $orderDir;
     	$projects->filter = $filter;
+    	
+		foreach ($projects as $project) {
+			$skills = \DB::table('project_skills')
+					->leftJoin('skills','project_skills.skill_id','=','skills.id')
+					->select(\DB::raw('GROUP_CONCAT(skills.name) as skills'))
+					->where('project_skills.project_id','=',$project->id)
+					->first();
+			$project->skills = $skills->skills;		 		
+		}
+    	
     	return $projects; 
     }
     
@@ -63,6 +71,9 @@ class Projects extends Model
 		        $project = new Projects();
 		        if ($request->input('id') > 0) {
 		        	$project = $project->where('id','=',$request->input('id'))->first();
+		        	$newRec = false;
+		        } else {
+		        	$newRec = true;
 		        }
 		        $project->id = $request->input('id',0);
 		        $project->name = $request->input('name','');
@@ -83,6 +94,16 @@ class Projects extends Model
 		        	$project_skillsModel->skill_id = $key;
 		        	$project_skillsModel->project_id = $project->id;
 		        	$project_skillsModel->save();
+		        }
+		        if ($newRec) {
+					// owner contrubotrs rekord felvitele
+					$contributor = new Contributors();
+					$contributor->project_id = $project->id;		        
+					$contributor->user_id  = $user->id;		        
+					$contributor->description  = __('project.owner');		        
+					$contributor->status = 'owner';		        
+					$contributor->start = date('Y-m-d');		        
+					$contributor->save();		        
 		        }
 		        $result = true;
 		});	 // transaction   	
