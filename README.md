@@ -2,7 +2,15 @@
 
 státusz: fejlesztés alatt
 
-Készültség: 1%
+Készültség: 95%  v0.04-alpha
+
+Verzió történet:
+
+v0.01 2021.02.21 e-mail ellenörzés branch: developer-emailverify
+
+v0.02 2021.02.25 footer branch: developer-footer
+
+v0.03            user profile  branch: developer-profile
 
 Kapcsolodó doksik: [https://drive.google.com/drive/folders/1bj8Zjtp5O1WVJ4coucLoEstYPXpQrEi-](https://drive.google.com/drive/folders/1bj8Zjtp5O1WVJ4coucLoEstYPXpQrEi-)
 
@@ -10,7 +18,9 @@ Chat: [https://codeforhungary.slack.com/archives/C01MV5D61C5](https://codeforhun
 
 NGO -k új web oldalainak kialakításához, meglévő  web oldalainak fejlesztéséhez, üzemeltetéséhez önkéntesek toborzása, támogatás nyújtása. Az igények és a jelentkező önkéntesek egymásra találásának elősegítése.
 
-![Logo](public/images/logo.png){height=300}
+[Élő demo](http://utopszkij.tk)
+
+![Logo](public/images/logo.png)
 
 ## Áttekintés
 
@@ -31,7 +41,8 @@ A weboldal elsősorban desctop/laptop/table használatra legyen optimalizálva, 
 Sotware: Laravel  8.28.1 alapon készül. lásd: [laravel-readme.md](laravel-readme.md) és [laravel.com](http://laravel.com)
 
 További felhasznált szellemi termékek: [jQuery](http://jquery.com), [bootstrap](https://getbootstrap.com/), [Awesore fonts](https://fontawesome.com/),
-[pixabay](https://pixabay.com/),  [gravatar](http://gravatar.com), [facebook](http://facebook.com), [google](http://google.com), [github](http://github.com)
+[pixabay](https://pixabay.com/),  [gravatar](http://gravatar.com), [facebook](http://facebook.com), [google](http://google.com), [github](http://github.com),
+[spatie cookie consent](https://github.com/spatie/laravel-cookie-consent)
 
 ## Licensz
 
@@ -43,32 +54,66 @@ mysql adatbázis létrehozása utf8mb4-hungaian_ci default rendezéssel
 
 .env file editásása (mysql elérés, smtp elérés, opcionálisan github, facebook, google login konfig)
 
-php artisan migrate
+composer install
+php artisan migrate --seed
 
 ## lokális teszt futtatás
 ```
 php artisan serve
 ```
+## tests
+```
+php artisan test
+```
 ## Feltöltés WEB szerverre
 
+1. MYSQL adatbázis létrehozása (utf8m4_hunagrain_ci illesztéssel) és kezdeti feltöltése (parancssori mysql vagy phpmyadmin -al)
+
+2. .env módosítása az aktuális adatbázis elérés ,levelezési és web site url beállításokhoz.
+
+3. A továbbiak attól függően másként alakulnak, hogy van-e lehetőségünk a web szerver document_root modosítására.
+
+3.1 ha van lehetőségünk a szerveren a document_rot modositására:
+ 
 könyvtár struktúra a web szerveren:
+
 ```
     app/                 
     bootstrap/           
     config/
     database/
-    public_html/         <- Ez a web szerver DOCUMENT_ROOT (egyes helyeken lehet más a neve)
+    public/         <- Ide mutasson a web szerver document_root!
     resources/
     routes
     storage/
     vendor/
-    artisan              
 ```
-upload ennek a reponak a  **public** könyvtárát a **public_html** -be
 
-upload ennek a reponak a többi könyvtárát változatlan néven a web szerverre (a fent megadott könyvtár szerkezetbe)
+fájlok a fő könyvtárban: .env, server.php, artisan
 
-edit bootstrap/paths.php     a **publik** a **public_html**  -re mutassan
+3.2 Ha nincs lehetőségünk a document_root modositására:
+
+könyvtár struktúra a document_root alatt:
+
+```
+    app/                 
+    bootstrap/           
+    config/
+    database/
+    resources/
+    routes
+    storage/
+    vendor/
+```
+
+fájlok a fő könyvtárban: .env, server.php, artisan
+
+A public könyvtár tartalmát (alkönyvtárakkal együtt) is a document_root -ba töltsük fel.
+
+Az index.php -t modositsuk, töröljünk minden file utvonalból a "../" részt.
+
+Mindkét módszer setén fontos, hogy a "storage" mappát kivéve a többi csak olvasható legyen,
+a "storage" legyen írható is a web szerver számára.
 
 # project alapja 
 [https://www.soengsouy.com/2020/12/login-with-laravel-8-and-socialite.html](https://www.soengsouy.com/2020/12/login-with-laravel-8-and-socialite.html)
@@ -77,7 +122,7 @@ edit bootstrap/paths.php     a **publik** a **public_html**  -re mutassan
 
 (ez a link tartalmazza  a  facebook, goggle, github konfigurálási utmutatót is)
 
-## A projekt előállítása a bázis laravel -ből kiindulval
+## A projekt előállítása a bázis laravel -ből kiindulva
 ```
 composer create-project --prefer-dist laravel/laravel LaravelSocialite 
 cd LaravelSocialite
@@ -94,10 +139,17 @@ edit config/services.php  (mysql access)
 ``
 edit database/migration/.....create_users_table.php (lásd a fenti **bázis url** -ben)
 ```
-php artisan migrate
+php artisan migrate --seed
 ```
 
 edit app/Http/Controllers/auth/LoginConbtroller.php (lásd a fenti bázis url -ben)
 
-copy az új és modositott fájlokat ebből a repo ból a **resources, routes, app** könyvtárakba
+```
+composer require spatie/laravel-cookie-consent
+php artisan vendor:publish --provider="Spatie\CookieConsent\CookieConsentServiceProvider" --tag="config"
+```
+copy az új és modositott **.env**, **.env.testing** fájlokat és a   
+**resources, routes, app** könyvtárakban lévő (belértve az alkönyvtárakat is) 
+ új és modosított fájlokat.
+
 

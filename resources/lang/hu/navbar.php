@@ -7,6 +7,7 @@ return [
 	"logout" => "Kijelentkezés",
 	"regist" => "Regisztrálás",
 	"search" => "Keresés",
-	"sites" => "WEb oldalak",
-	"volunteers" => "Önkéntesek"
+	"projects" => "Projektek",
+	"volunters" => "Önkéntesek",
+    "sysadmins" => "Rendszergazdák"
 ];

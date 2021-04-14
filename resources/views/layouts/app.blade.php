@@ -5,10 +5,17 @@
 </head>
 <body>
     <div id="app">
-    	@include('navbar')
-        <main class="py-4">
-            @yield('content')
-        </main>
+    	<div> 
+    		@include('navbar') 
+    	</div>
+    	<div>
+        	<main class="pageBody py-4">
+            	@yield('content')
+        	</main>
+        </div>
+        <div>
+			@include('footer')
+		</div>	
     </div>
 </body>
 </html>
