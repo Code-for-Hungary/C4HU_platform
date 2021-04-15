@@ -39,7 +39,6 @@
                                 </label>
                                 <input type="password" class="form-control" name="password" 
                                 size="80" value="" />
-                            </div>
                         </div>
 	                    <div class="form-group">
                                 <label>
@@ -47,7 +46,6 @@
                                 </label>
                                 <input type="password" class="form-control" name="password2" 
                                 size="80" value="" />
-                            </div>
                         </div>
 	                    <div class="form-group">
 	                    	{{ __('profile.passwordhelp') }}
@@ -61,7 +59,6 @@
                                 <input type="text" class="form-control" name="avatar" 
                                 size="80" value="{{ \Auth::user()->avatar }}" />
                                 <br />{{ __('profile.avatarhelp') }}
-                            </div>
                         </div>
 	                    <div class="form-group">
                                     <label>
