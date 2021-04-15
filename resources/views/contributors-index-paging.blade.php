@@ -1,11 +1,9 @@
 @extends('layouts.app')
 @section('content')
-<div>
+<div id="contributorsForm">
 
-	    	@include('popup');
+	    	@include('popup')
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
-           		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="{{ url('/') }}/images/logo.png" class="logo" />
 	            <div class="row">
 	            	<h3>{{ $project->name }} ( {{ __('contributor.'.$project->status) }} )</h3>
 	            	<h4>{{ __('contributor.contributors') }}</h4>

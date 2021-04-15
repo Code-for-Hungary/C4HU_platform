@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<div class="bugreport">
+<div class="bugreport" id="bugreportForm">
     <form method="POST" action="{{ \URL::to('/bugreportsend') }}" id="frmBugreport">
-    	<h2>{{ env('APP_NAME') }}</h2>
-    	<img src="/images/logo.png" class="logo" />
     	<h3>{{ __('bugreport.reportForm') }}</h3>
         @csrf
         <div class="form-group">

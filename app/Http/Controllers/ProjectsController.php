@@ -132,7 +132,7 @@ class ProjectsController extends Controller
 		$request->session()->put('projectsOrderDir',$orderDir);
 		$request->session()->put('projectsFilter',$filter);
 		$modelProjects = new Projects();
-		$projects = $modelProjects->paginateOrderFilter(5, $orderField, $orderDir, $filter);		
+		$projects = $modelProjects->paginateOrderFilter(4, $orderField, $orderDir, $filter);		
 	    return view('project-index-paging',['skillsTree' => $skillsTree,
 	    									'projects' => $projects,
 	    									'page' => $request->input('page',''),

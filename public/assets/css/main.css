@@ -1,0 +1,77 @@
+.logo {width:100px;}
+.biglogo {width:200px}
+.avatar {width:50px; border-radius:25px}
+.bigAvatar {width:100px;}
+.navbar .dropdown ul {left:-40px}
+.navbar .dropdown ul li {min-width:100px}
+.carousel-container p {margin-left:15px;}
+main {padding:2%}
+.btn {border-style:solid; border-width:1px; border-color: #a0a0a0; border-radius:5px;}
+.btn-primary {background-color:#80b3dd}
+.btn-primary:hover {background-color:#6093ad}
+.form-group {margin-bottom:2%}
+.card-header {background-color:#5C768D; color:white}
+label {display:inline-block; width:25%; text-align:right; vertical-align:top; font-weight:bold}
+input, input.form-control {display:inline-block; width:auto; max-width:60%; text-align:left}
+textarea, textarea.form-control {display:inline-block; width:auto; max-width:60%; text-align:left}
+select, select.form-control {display:inline-block; width:auto; max-width:60%; text-align:left}
+.pageBody {min-height:800px}
+#popup {display:none; position:fixed; z-index:1200; left:10%; top:10%;
+	   width:auto; height:auto; padding:10px;	 
+       background-color:#d0d0d0; border-style:solid; border-width:1px;}
+
+a {display:inline-block; width:auto;}
+.fa-facebook {background-image:url('../img/facebook.png'); background-size:14px; background-repeat:no-repeat;
+	display:inline-block; height:14px; width:14px; margin-right:3px;}
+.fa-github {background-image:url('../img//github.png'); background-size:22px; background-repeat:no-repeat;
+	display:inline-block; height:14px; width:18px; margin-right:3px;}
+.fa-google {background-image:url('../img/google.png'); background-size:14px; background-repeat:no-repeat;
+	display:inline-block; height:14px; width:14px; margin-right:3px;}
+
+.loginForm {text-align:center}
+.loginForm form {display:inline-block; width:400px; text-align:left}
+
+.js-cookie-consent {background-color:#d0d0d0; width: 90%; height:auto; padding:5%; 
+	position:fixed; z-index:99; top:25%; left:5%; opacity:0.9;
+	border-style:solid; border-radius:10px; 
+}
+#cookieDisable { text-align:right}
+
+#projectsForm .pageBody {margin-top:-30px}
+#projectsForm thead tr {background-color:#cdf5f7}
+#profilesTable thead tr a:hover {color:blue;}
+#projectsForm svg {width:14px} 
+
+#projectshowForm .pageBody {margin-top:30px}
+#projectForm .pageBody {margin-top:80px}
+
+#profilesForm .pageBody {margin-top:30px}
+#profilesTable thead tr {background-color:#cdf5f7}
+#profilesTable thead tr a:hover {color:blue;}
+#profilesTable svg {width:14px}
+
+#profileProjects thead tr {background-color:#cdf5f7}
+#profileProjects thead tr a:hover {color:blue;}
+
+#contributorshowForm .pageBody {margin-top:30px}
+#contributorsForm thead tr {background-color:#cdf5f7}
+
+#contributorForm .pageBody {margin-top:80px}
+
+#loginForm {margin-top:80px;}
+
+#registForm {margin-top:80px}
+
+#profileForm {margin-top:80px;}
+
+#textpageForm {margin-top:80px}
+
+#bugreportForm {margin-top:80px}
+
+@media (max-width: 992px) {
+	label {display:block; vertical-align:top; text-align:left; font-weight:bold}
+	input, input.form-control {display:block; width:auto; max-width:85%; text-align:left}
+	textarea, textarea.form-control {display:block; width:auto; max-width:85%; text-align:left}
+	select, select.form-control {display:block; width:auto; max-width:85%; text-align:left}
+}
+

@@ -1,4 +1,4 @@
-# Fogadj örökbe egy weboldalt 
+# Code for Hungary platfomr (C4HU_platform) 
 
 státusz: fejlesztés alatt
 
@@ -10,7 +10,9 @@ v0.01 2021.02.21 e-mail ellenörzés branch: developer-emailverify
 
 v0.02 2021.02.25 footer branch: developer-footer
 
-v0.03            user profile  branch: developer-profile
+v0.03 2021.04.02 user profile  branch: developer-profile
+
+V0.04 2021.04.14 contributors  branch: developer-contributors
 
 Kapcsolodó doksik: [https://drive.google.com/drive/folders/1bj8Zjtp5O1WVJ4coucLoEstYPXpQrEi-](https://drive.google.com/drive/folders/1bj8Zjtp5O1WVJ4coucLoEstYPXpQrEi-)
 
@@ -40,10 +42,16 @@ A weboldal elsősorban desctop/laptop/table használatra legyen optimalizálva, 
 
 Sotware: Laravel  8.28.1 alapon készül. lásd: [laravel-readme.md](laravel-readme.md) és [laravel.com](http://laravel.com)
 
-További felhasznált szellemi termékek: [jQuery](http://jquery.com), [bootstrap](https://getbootstrap.com/), [Awesore fonts](https://fontawesome.com/),
-[pixabay](https://pixabay.com/),  [gravatar](http://gravatar.com), [facebook](http://facebook.com), [google](http://google.com), [github](http://github.com),
+További felhasznált szellemi termékek: [jQuery](http://jquery.com),
+[bootstrap](https://getbootstrap.com/), [Awesore fonts](https://fontawesome.com/),
+[pixabay](https://pixabay.com/),  
+[gravatar](http://gravatar.com), 
+[facebook](http://facebook.com), 
+[google](http://google.com), 
+[github](http://github.com),
 [spatie cookie consent](https://github.com/spatie/laravel-cookie-consent)
-
+[treejs](https://daweilv.github.io/treejs/)
+[mamba template](https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/)
 ## Licensz
 
 [MIT license](https://opensource.org/licenses/MIT).
@@ -54,8 +62,10 @@ mysql adatbázis létrehozása utf8mb4-hungaian_ci default rendezéssel
 
 .env file editásása (mysql elérés, smtp elérés, opcionálisan github, facebook, google login konfig)
 
+```
 composer install
 php artisan migrate --seed
+```
 
 ## lokális teszt futtatás
 ```
@@ -118,38 +128,7 @@ a "storage" legyen írható is a web szerver számára.
 # project alapja 
 [https://www.soengsouy.com/2020/12/login-with-laravel-8-and-socialite.html](https://www.soengsouy.com/2020/12/login-with-laravel-8-and-socialite.html)
 
-(továbbiakban: bázis url)
 
 (ez a link tartalmazza  a  facebook, goggle, github konfigurálási utmutatót is)
-
-## A projekt előállítása a bázis laravel -ből kiindulva
-```
-composer create-project --prefer-dist laravel/laravel LaravelSocialite 
-cd LaravelSocialite
-```
-edit .env file (mysql access, smtp access, sociál login access)
-```
-composer require laravel/ui
-npm run dev
-php artisan ui:auth      (answer "yes" for all questions)
-composer require laravel/socialite
-php artisan make:controller LoginController
-```
-edit config/services.php  (mysql access)
-``
-edit database/migration/.....create_users_table.php (lásd a fenti **bázis url** -ben)
-```
-php artisan migrate --seed
-```
-
-edit app/Http/Controllers/auth/LoginConbtroller.php (lásd a fenti bázis url -ben)
-
-```
-composer require spatie/laravel-cookie-consent
-php artisan vendor:publish --provider="Spatie\CookieConsent\CookieConsentServiceProvider" --tag="config"
-```
-copy az új és modositott **.env**, **.env.testing** fájlokat és a   
-**resources, routes, app** könyvtárakban lévő (belértve az alkönyvtárakat is) 
- új és modosított fájlokat.
 
 

@@ -1,10 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<div>
+<div id="contributorForm">
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
-		    	@include('popup');
-           		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="/images/logo.png" class="logo" />
+		    	@include('popup')
 				@if (count($errors) > 0)
 				   <div class = "alert alert-danger">
 				      <ul>
@@ -32,75 +30,50 @@
 	                    {{ $contributor->user_name }} 
 	                    </p>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        {{ __('contributor.status') }}
-                                    </span>
-                                </div>
+                                <label>
+                                    {{ __('contributor.status') }}
+                                </label>
                                 <select name="status" id="status" class="form-control">
                                 	<option value="appliciant">{{ __('contributor.appliciant') }}</option>
                                 	<option value="active">{{ __('contributor.active') }}</option>
                                 	<option value="inactive">{{ __('contributor.inactive') }}</option>
                                 	<option value="exited">{{ __('contributor.exited') }}</option>
                                 </select> 
-                            </div>
                         </div>
 
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        {{ __('contributor.description') }}
-                                    </span>
-                                </div>
+                                <label>
+                                    {{ __('contributor.description') }}
+                                </label>
                                 <textarea cols="80" rows="5" class="form-control" name="description">{{ $contributor->description }}</textarea>  
-                            </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        {{ __('contributor.evaluation') }}
-                                    </span>
-                                </div>
+                                <label>
+                                    {{ __('contributor.evaluation') }}
+                                </label>
                                 <textarea cols="80" rows="5" class="form-control" name="evaluation">{{ $contributor->evaluation }}</textarea>  
-                            </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        {{ __('contributor.grade') }}
-                                    </span>
-                                </div>
+                                <label>
+                                   {{ __('contributor.grade') }}
+                                </label>
                                 <input type="number" min="1" max="5" class="form-control" 
                                 name="grade" value="{{ $contributor->grade }}" />  
-                            </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        {{ __('contributor.start') }}
-                                    </span>
-                                </div>
+                                <label>
+                                    {{ __('contributor.start') }}
+                                </label>
                                 <input type="date" class="form-control" 
                                 name="start" value="{{ $contributor->start }}" />  
-                            </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        {{ __('contributor.end') }}
-                                    </span>
-                                </div>
+                                <label>
+                                    {{ __('contributor.end') }}
+                                </label>
                                 <input type="date" class="form-control" 
                                 name="start" value="{{ $contributor->end }}" />  
-                            </div>
                         </div>
-	                    
 	                    
 	                    <div class="form-group">
 	                    	<button type="submit" class="btn btn-primary" id="btnSave">

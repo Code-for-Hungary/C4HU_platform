@@ -1,10 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<div>
+<div id="profileForm">
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
-		    	@include('popup');
-           		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="/images/logo.png" class="logo" />
+		    	@include('popup')
 				@if (count($errors) > 0)
 				   <div class = "alert alert-danger">
 				      <ul>
@@ -14,17 +12,17 @@
 				      </ul>
 				   </div>
 				@endif            
+            	<h3>{{ __('profile.profile') }}</h3>
             	<ul class="nav nav-tabs">
-					<li class="active">
-						<a href="#">{{ __('profile.info') }}</a>
+					<li class="nav-item">
+						<a class="nav-link active" href="#">{{ __('profile.info') }}</a>
 					</li>
-  					<li>
-  						<a href="{{ \URL::to('/profileprojects/'.\Auth::user()->id) }}">{{ __('profile.linkedProjects') }}</a>
+  					<li class="nav-item">
+  						<a class="nav-link" href="{{ \URL::to('/profileprojects/'.\Auth::user()->id) }}">{{ __('profile.linkedProjects') }}</a>
   					</li>
 				</ul>
                 <div class="profileForm">
                 	<form method="POST" action="{{ \URL::to('/profilesave') }}" id="frmProfile">
-		            	<h3>{{ __('profile.profile') }}</h3>
 	                    <div class="form-group">
 	                    	{{ \Auth::user()->name }}
 	                    	<img class="bigAvatar" src="{{ \Auth::user()->avatar }}" style="float:right" />
@@ -36,23 +34,17 @@
 						</div>		            	
                         @csrf
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
+                                <label>
                                         {{ __('profile.password') }}
-                                    </span>
-                                </div>
+                                </label>
                                 <input type="password" class="form-control" name="password" 
                                 size="80" value="" />
                             </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
+                                <label>
                                         {{ __('profile.password_repeat') }}
-                                    </span>
-                                </div>
+                                </label>
                                 <input type="password" class="form-control" name="password2" 
                                 size="80" value="" />
                             </div>
@@ -63,54 +55,39 @@
 
 
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
+                                <label>
                                         {{ __('profile.avatar') }}
-                                    </span>
-                                </div>
+                                </label>
                                 <input type="text" class="form-control" name="avatar" 
                                 size="80" value="{{ \Auth::user()->avatar }}" />
                                 <br />{{ __('profile.avatarhelp') }}
                             </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
+                                    <label>
                                         {{ __('profile.voluntary') }}
-                                    </span>
+                                    </label>
 	                                @if ($voluntary == 1) 
     	                            <input type="checkbox" name="voluntary" checked="checked" value="1"/>
         	                        @else
             	                    <input type="checkbox" name="voluntary" value="1" />
                 	                @endif
-                                </div>
-                            </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
+                                    <label>
                                         {{ __('profile.project_owner') }}
-                                    </span>
+                                    </label>
 	                                @if ($project_owner == 1)
     	                            <input type="checkbox" name="project_owner" checked="checked" value="1"  />
         	                        @else
             	                    <input type="checkbox" name="project_owner" value="1" />
                 	                @endif
-                                </div>
-                            </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
+                                <label>
                                         {{ __('profile.publicinfo') }}
-                                    </span>
-                                </div>
+                                </label>
                                 <textarea cols="80" rows="10" class="form-control" name="publicinfo">{{ $publicinfo }}</textarea>  
-                            </div>
                         </div>
                         <div class="skillsBlock">
 			                <div class="row">
@@ -145,7 +122,7 @@
                 <!-- skillLevel template -->
                 <div style="display:none">
                		<p id="skillLevelTemplate">
-		                	<label style="width:50%; text-align:right"></label>
+		                	<label></label>
 		                	<select>
 		                		<option value="student">{{ __('profile.student') }}</option>
 		                		<option value="junior">{{ __('profile.junior') }}</option>

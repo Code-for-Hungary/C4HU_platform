@@ -1,10 +1,9 @@
 @extends('layouts.app')
 @section('content')
-<div>
-	    	@include('popup');
+<div id="profilesForm">
+	    	@include('popup')
+	    	<div id="profilesTop">&nbsp;</div>
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
-           		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="{{ url('/') }}/images/logo.png" class="logo" />
 	            <div class="row">
 	                <div class= "col-sm-3">
 	                	<h2>{{ __('profile.filter') }}</h2>

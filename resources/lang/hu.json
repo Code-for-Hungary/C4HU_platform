@@ -10,5 +10,9 @@
 	"yes":"Igen",
 	"no":"Nem",
 	"ok":"Rendben",
-	"cancel":"Mégsem"
+	"cancel":"Mégsem",
+	"Showing":"Listázva",
+	"to":" -tól/töl",
+	"of":" -ig, összesen ",
+	"results":" -ből"
 }

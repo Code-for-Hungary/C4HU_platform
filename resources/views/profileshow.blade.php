@@ -1,10 +1,9 @@
 @extends('layouts.app')
 @section('content')
-<div>
-	    	@include('popup');
+<div id="profileshowForm">
+	    	@include('popup')
+	    	<div id="profileTop">&nbsp;</div>
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
-           		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="{{ url('/') }}/images/logo.png" class="logo" />
 				@if (count($errors) > 0)
 				   <div class = "alert alert-danger">
 				      <ul>
@@ -15,17 +14,15 @@
 				   </div>
 				@endif            
             	<ul class="nav nav-tabs">
-					<li class="active">
-						<a href="#">{{ __('profile.info') }}</a>
+					<li class="nav-item">
+						<a class="nav-link active" href="#">{{ __('profile.info') }}</a>
 					</li>
-  					<li>
-  						<a href="{{ \URL::to('/profileprojects/'.$profile->id) }}">{{ __('profile.linkedProjects') }}</a>
+  					<li class="nav-item">
+  						<a class="nav-link" href="{{ \URL::to('/profileprojects/'.$profile->id) }}">{{ __('profile.linkedProjects') }}</a>
   					</li>
 				</ul>
                 <div class="profileForm">
                 	<form class="form">
-		            	<h2>{{ env('APP_NAME') }}</h2>
-        		    	<img src="{{ url('/') }}/images/logo.png" class="logo" />
 		            	<h3>{{ __('profile.profile') }}</h3>
 	                    <div class="form-group">
 	                    	{{ $profile->name }}
@@ -38,42 +35,30 @@
 						</div>		            	
 
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
+                                    <label>
                                         {{ __('profile.voluntary') }}
-                                    </span>
+                                    </label>
 	                                @if ($profile->voluntary == 1) 
     	                            <input type="checkbox" disabled="disabled" name="voluntary" checked="checked" value="1"/>
         	                        @else
             	                    <input type="checkbox" disabled="disabled" name="voluntary" value="1" />
                 	                @endif
-                                </div>
-                            </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
+                                    <label>
                                         {{ __('profile.project_owner') }}
-                                    </span>
+                                    </label>
 	                                @if ($profile->project_owner == 1)
     	                            <input type="checkbox" disabled="disabled" name="project_owner" checked="checked" value="1"  />
         	                        @else
             	                    <input type="checkbox" disabled="disabled" name="project_owner" value="1" />
                 	                @endif
-                                </div>
-                            </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
+                                <label>
                                         {{ __('profile.publicinfo') }}
-                                    </span>
-                                </div>
+                                </label>
                                 <textarea readonly="readonly" cols="80" rows="10" class="form-control" name="publicinfo">{{ $profile->publicinfo }}</textarea>  
-                            </div>
                         </div>
                         <div class="skillsBlock">
                         	<h3> {{ __('profile.skills') }}</h3>

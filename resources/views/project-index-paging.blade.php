@@ -1,10 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<div>
-	    	@include('popup');
+<div id="projectsForm">
+	    	@include('popup')
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
-           		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="{{ url('/') }}/images/logo.png" class="logo" />
 	            <div class="row">
 	                <div class= "col-sm-3">
 	                	<h2>{{ __('project.filter') }}</h2>
@@ -14,7 +12,7 @@
 	                	<h2>{{ __('project.projects') }}</h2>
 						<table class="table table-bordered table-hover">
 						    <thead>
-						        <th></th>
+						        <th>Rendezés:</th>
 						        <th>
 						        	<a href="{{ url('/') }}/projects?page=1&orderfield=projects.name">
 						        	{{ __('project.name') }}
@@ -74,8 +72,8 @@
 						
 						        @foreach ($projects as $project)
 						        <tr>
-						            <td><img class="avatar" src="{{ $project->avatar }}" /></td>
-						            <td><a href="{{ url('/') }}/project/{{ $project->id }}">
+						            <td class="tdAvatar"><img class="avatar" src="{{ $project->avatar }}" /></td>
+						            <td class="tdName"><a href="{{ url('/') }}/project/{{ $project->id }}">
 						            	<em class="fa fa-hand-point-right"></em>
 						            	{{ $project->name }}
 						            	</a>
@@ -84,9 +82,9 @@
 						            	<a href="{{ $project->website }}" target="_new">{{ $project->website }}</a>
 						            	@endif
 						            </td>
-						            <td>{{ __('project.'.$project->status) }}</td>
-						            <td>{{ $project->deadline }}</td>
-						            <td>{{ $project->skills }}</td>
+						            <td class="tdStatus">{{ __('project.'.$project->status) }}</td>
+						            <td class="tdDeadline">{{ $project->deadline }}</td>
+						            <td class="tdSkills">{{ $project->skills }}</td>
 						        </tr>
 						        @endforeach
 						    </tbody>
