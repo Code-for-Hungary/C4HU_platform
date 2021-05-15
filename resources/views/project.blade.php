@@ -1,10 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<div>
-	    	@include('popup');
+<div id="projectForm">
+	    	@include('popup')
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
-           		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="/images/logo.png" class="logo" />
 				@if (count($errors) > 0)
 				   <div class = "alert alert-danger">
 				      <ul>
@@ -14,85 +12,62 @@
 				      </ul>
 				   </div>
 				@endif            
+            	<h3>{{ __('project.project') }}</h3>
             	<ul class="nav nav-tabs">
-					<li class="active">
-						<a href="#">{{ __('project.info') }}</a>
+					<li class="nav-item">
+						<a class="nav-link active" href="#">{{ __('project.info') }}</a>
 					</li>
-  					<li>
-  						<a href="{{ \URL::to('/contributors/'.$project->id) }}">{{ __('project.contributors') }}</a>
+  					<li class="nav-item">
+  						<a class="nav-link" href="{{ \URL::to('/contributors/'.$project->id) }}">{{ __('project.contributors') }}</a>
   					</li>
 				</ul>
                 <div class="projectForm">
                 	<form method="POST" action="{{ \URL::to('/project') }}" id="frmProject">
-		            	<h3>{{ __('project.project') }}</h3>
                         @csrf
                         <input type="hidden" name="id" value="{{ $project->id }}" />
                         <input type="hidden" name="user_id" value="{{ \Auth::user()->id }}" />
 	                    <div class="form-group">
-                            <div class="input-group">
-                                    <img class="avatar" src="{{ $project->avatar }}" />
-                            </div>        
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        {{ __('project.name') }}
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" name="name" 
-                                size="80" value="{{ $project->name }}" />
-                            </div>
+                            <img class="avatar" src="{{ $project->avatar }}" />
+	                    </div>
+	                    <div class="form-group">
+                            <label>
+                               {{ __('project.name') }}
+                            </label>
+                            <input type="text" class="form-control" name="name" 
+                            size="80" value="{{ $project->name }}" />
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        {{ __('project.avatar') }}
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" name="avatar" 
+                            <label>
+                               {{ __('project.avatar') }}
+                            </label>
+                            <input type="text" class="form-control" name="avatar" 
                                 size="80" value="{{ $project->avatar }}" />
-                            </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        {{ __('project.organisation') }}
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" name="organisation" 
+                            <label>
+                                {{ __('project.organisation') }}
+                            </label>
+                            <input type="text" class="form-control" name="organisation" 
                                 size="80" value="{{ $project->organisation }}" />
-                            </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        {{ __('project.website') }}
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" name="website" 
+                            <label>
+                               {{ __('project.website') }}
+                            </label>
+                            <input type="text" class="form-control" name="website" 
                                 size="80" value="{{ $project->website }}" />
-                            </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        {{ __('project.deadline') }}
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" name="deadline" 
+                            <label>
+                                {{ __('project.deadline') }}
+                            </label>
+                            <input type="text" class="form-control" name="deadline" 
                                 size="80" value="{{ $project->deadline }}" />
-                            </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
+                                <label>
                                         {{ __('project.status') }}
-                                    </span>
-                                </div>
+                                </label>
                                 <select class="form-control" name="status" id="status">
                                 	<option value="plan">{{ __('project.plan') }}</option>
                                 	<option value="task">{{ __('project.task') }}</option>
@@ -105,14 +80,10 @@
                         </div>
 
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        {{ __('project.description') }}
-                                    </span>
-                                </div>
-                                <textarea cols="80" rows="10" class="form-control" name="description">{{ $project->description }}</textarea>  
-                            </div>
+                            <label>
+                                   {{ __('project.description') }}
+                            </label>
+                            <textarea cols="80" rows="10" class="form-control" name="description">{{ $project->description }}</textarea>  
                         </div>
 
                         <div class="skillsBlock">

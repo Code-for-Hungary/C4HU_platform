@@ -8,11 +8,12 @@ use App\Models\Project_skills;
 use App\Models\Contributors;
 use App\Models\User;
 
+
+
 class Projects extends Model
 {
     use HasFactory;
-    
-    
+   
     /**
     * projects-user-skills lista
     * @param integer $limit sor/lap
@@ -25,7 +26,9 @@ class Projects extends Model
     public function paginateOrderFilter(int $limit, string $orderField, string $orderDir, string $filter) {
         $query = \DB::table('projects');
     	$query->leftJoin('users','projects.user_id','=','users.id')
-    		  ->select('projects.id',
+    		  ->leftJoin('project_skills','projects.id','=','project_skills.skill_id')
+    		  ->select(
+    		     'projects.id',
     		     'projects.name',
     		     'projects.avatar',
     		     'projects.description',
@@ -35,13 +38,14 @@ class Projects extends Model
     			 'users.avatar as user_avatar',
     			 'users.name as user_name',
     			 'projects.name as skills')
+    			 ->groupBy(['projects.id'])
     		     ->where('projects.id','<>',0)	
     			 ->orderBy($orderField, $orderDir);
    		if ($filter != '[]') {
 			$filterArray = JSON_decode($filter);   		
 			$query->whereIn('project_skills.skill_id',$filterArray);
    		}		     
-    	$projects = $query->paginate($limit);
+    	$projects = $query->paginate($limit,['projects.id']);
     	$projects->orderField = $orderField;
     	$projects->orderDir = $orderDir;
     	$projects->filter = $filter;

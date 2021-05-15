@@ -1,13 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<div>
+<div  id="profileProjects">
 
-	    	@include('popup');
+	    	@include('popup')
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
-           		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="{{ url('/') }}/images/logo.png" class="logo" />
 	            <div class="row">
-	            	<h3>{{ $user->name }}</h3>
+	            	<h3><img class="avatar" src="{{ $user->avatar }}" /> {{ $user->name }}</h3>
 	            	<h4>{{ __('contributor.projects') }}</h4>
 						<table class="table table-bordered table-hover">
 						    <thead>

@@ -78,6 +78,10 @@ class Profiles extends Model
 				$profile->save();	        
 
 		        $user->avatar = $request->input('avatar','');
+		        if ($user->avatar == '') {
+		        	$user->avatar = 'https://gravatar.com/avatar/'.md5($user->email).
+					'?default='.urlencode(url('/').'/assets/img/noavatar.png');
+				}
 		        $user->save();
 		        
 		        // tárolás a profile_skills táblába

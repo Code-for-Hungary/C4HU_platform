@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="registForm">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center">
 		        	<h2>{{ env('APP_NAME') }}</h2>
-                	<img src="{{ url('/') }}/images/logo.png" class="logo"> 
+                	<img src="{{ url('/') }}/assets/img/logo.png" class="logo"> 
                 	<h2>{{ __('regist.Register') }}</h2>
                 </div>
 

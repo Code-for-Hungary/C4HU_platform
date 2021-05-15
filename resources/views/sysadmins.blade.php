@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('cintent')
-<div>
+<div id="sysadminsForm">
             <div class="pageBody sysadmins">
 				<h2>{{ __('profile.sysadmins') }}</h2>
 				<table class="table table-stripped">

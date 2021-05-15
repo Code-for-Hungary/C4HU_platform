@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div>
+<div id="emailverifyForm">
 	<div class="emailverifyNav text-left">
 			<a href="{{ URL::to('/') }}">
 				<em class="fa fa-home"></em> {{ __('emailverify.home') }}
@@ -8,8 +8,6 @@
 	</div>
 	<div class="pageBody emailVerify">
         <div class="text-center">
-        	<h2>{{ env('APP_NAME') }}</h2>
-			<img src="/images/logo.png" class="logo" />
 			<h2>{{ __('emailverify.title') }}</h2>
 			<h3>{{ $email }}</h3>
 			<p class"buttons">

@@ -3,72 +3,67 @@
 	if (Auth::user()) {
 		if ((!isset(Auth::user()->avatar)) | (Auth::user()->avatar == '')) {
 			Auth::user()->avatar = 'https://gravatar.com/avatar/'.md5(Auth::user()->email).
-			'?default='.urlencode(URL::to('/').'/images/noavatar.png');
+			'?default='.urlencode(URL::to('/').'/assets/img/noavatar.png');
 		}
 	}
 ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon fa  fa-bars"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  	<div style="display:inline-block; width:auto">
-	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item active">
-	        <a class="nav-link" href="{{ url('/') }}/"><em class="fa fa-home"></em> 
-	        	{{ __('navbar.home') }} <span class="sr-only">(current)</span></a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="{{ \URL::to('/projects') }}"> {{ __('navbar.projects') }} </a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="{{ \URL::to('/profiles') }}"> {{ __('navbar.volunters') }} </a>
-	      </li>
-	    </ul>
-    </div>
-  	<div style="display:inline-block; width:auto; float:right">
-	    <ul class="navbar-nav mr-auto">
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <div class="me-auto">
+      	<a href="{{ url('/') }} "><img class="avatar" src="{{ url('/') }}/assets/img/logo.png" />
+			{{ env('APP_NAME') }}      	
+      	</a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="{{ url('/') }}">{{ __('navbar.home') }}</a></li>
+          <li><a class="nav-link scrollto" href="{{ url('/projects') }}">{{ __('navbar.projects') }}</a></li>
+          <li><a class="nav-link scrollto" href="{{ url('/profiles') }}">{{ __('navbar.volunters') }}</a></li>
 	      @auth
-		      <li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		      <li class="dropdown">
+		        <a href="#" id="navbarDropdown2">
 		      	   <img src="{{ Auth::user()->avatar }}" style="height:20px" />
 		      	   {{ Auth::user()->name }} <em class="fa fa-caret-down"></em>	
 	    	    </a>
-		        <div class="dropdown-menu" aria-labelledby="navbarDropdown2" id="userMenu">
-		           <div class="nav-subitem">	
-		           	<a href="{{ \URL::to('/profileform') }}" class="text-sm text-gray-700 underline">
-					<em class="fa fa-id-card"></em> {{ __('navbar.profile') }}</a>
-				  </div>
- 	              <div class="nav-subitem">	
-		            <a href="#" onclick="jQuery('#logoutForm').submit()" class="text-sm text-gray-700 underline">
-		            <em class="fa fa-sign-in-alt"></em> {{ __('navbar.logout') }} </a>
-		          </div>  
-		        </div>
+		        <ul>
+		           <li>	
+		           	<a href="{{ \URL::to('/profileform') }}">
+					{{ __('navbar.profile') }}</a>
+				  </li>
+ 	              <li>	
+		            <a href="#" onclick="jQuery('#logoutForm').submit()">
+		            {{ __('navbar.logout') }} </a>
+		          </li>  
+		        </ul>
 		       </li> 
 	      @else
-		      <li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		      <li class="dropdown">
+		        <a href="#" id="navbarDropdown3">
 		      	   {{ __('navbar.signin') }}<em class="fa fa-caret-down"></em>	
 	    	    </a>
-		        <div class="dropdown-menu" aria-labelledby="navbarDropdown3" id="userMenu">
- 	               <div class="nav-subitem">	
+		        <ul>
+ 	               <li>	
 		             <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">
-		             <em class="fa fa-sign-in-alt"></em> {{ __('navbar.login') }}</a>
-		           </div>
- 	               <div class="nav-subitem">	
-			           <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">
-			           <em class="fa fa-key"></em> {{ __('navbar.regist') }}</a>
-			       </div>    
-		        </div>
+		             {{ __('navbar.login') }}</a>
+		           </li>
+ 	               <li>	
+			           <a href="{{ route('register') }}" class="text-sm text-gray-700 underline">
+			           {{ __('navbar.regist') }}</a>
+			       </li>    
+		        </ul>
 		       </li> 
 	      @endauth
-		</ul>
-	</div> 
-	<div style="clear:both"></div>   
-  </div>
-  </div>
-</nav>
+          
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
 @if (isset($msg))
 	<div class="alert {{ $msgClass ?? '' }}"> 
     	{{ $msg ?? '' }}

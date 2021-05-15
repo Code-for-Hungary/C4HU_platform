@@ -1,11 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<div>
-aaaaaaaaaaaaaaaaaaa
+<div id="contributorshowForm">
 	    	@include('popup');
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
-           		<h2>{{ env('APP_NAME') }}</h2>	
-            	<img src="/images/logo.png" class="logo" />
 				@if (count($errors) > 0)
 				   <div class = "alert alert-danger">
 				      <ul>
@@ -32,24 +29,13 @@ aaaaaaaaaaaaaaaaaaa
 	                    	{{ $contributor->user_name }}&nbsp;{{ __('contributor.'.$contributor->status) }}
 						</div>                        
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <label>{{ __('contributor.description') }}</label>
-                                    </span>
-                                </div>
+                                <label>{{ __('contributor.description') }}</label>
                                 <textarea readonly="readonly" cols="80" rows="5" class="form-control" name="description">{{ $contributor->description }}</textarea>  
                             </div>
                         </div>
 	                    <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <label>{{ __('contributor.evaluation') }}</label>
-                                    </span>
-                                </div>
+                                <label>{{ __('contributor.evaluation') }}</label>
                                 <textarea readonly="readonly" cols="80" rows="5" class="form-control" name="description">{{ $contributor->evaluation }}</textarea>  
-                            </div>
                         </div>
 	                    <div class="form-group">
 	                    	<label>{{ __('contributor.grade') }}</label>:&nbsp;

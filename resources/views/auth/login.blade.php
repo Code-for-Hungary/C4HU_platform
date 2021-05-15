@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
-    <div class="loginForm">
+    <div class="loginForm" id="loginForm">
         <form method="POST" action="{{ route('login') }}" id="frmLogin">
             @csrf
             <div class="text-center">
                 <a href="{{ url('/') }}/" aria-label="Space">
-                    <img class="mb-3 logo-image" src="{{URL::to('images/logo.png')}}" alt="Logo" width="60" height="60">
+                    <img class="mb-3 logo-image" src="{{ url('/') }}/assets/img/logo.png" alt="Logo" width="60" height="60">
                 </a>
             </div>
             <div class="text-center mb-4">
@@ -70,28 +70,23 @@
                 <p class="text-muted">{{ __('login.NotSignin') }} <a href="{{route('register')}}">
                 	{{ __('login.Regist') }}</a></p>
                 <p class="text-muted">
-                	<var onclick="jQuery('#frmLogin').attr('action','/forget-password'); jQuery('#frmLogin').submit();"
+                	<a href="#" onclick="jQuery('#frmLogin').attr('action','/forget-password'); jQuery('#frmLogin').submit(); false;"
                 		style="cursor:pointer">
-                		{{ __('login.ForgetPassword') }}</var></p>
+                		<i class="bx bx-chevron-right"></i>
+                		{{ __('login.ForgetPassword') }}</a></p>
             </div>
             
             <div class="or-seperator"><i>{{ __('login.SocialLogin') }}</i></div>
             <div class="row mx-gutters-2 mb-4">
                 <div class="mb-12">
-                    <a href="{{ route('login.google') }}">
-                        <button type="button" class="btn btn-block btn-google">
-                        	<em class="fa fa-google"></em>google
-                        </button>
+                    <a href="{{ route('login.google') }}" class="btn btn-google">
+                        	<em class="fa fa-google">&nbsp;</em>google
                     </a>
-                    <a href="{{ route('login.facebook') }}">
-                        <button type="button" class="btn btn-block btn-facebook">
-                        	<em class="fa fa-facebook"></em>facebook
-                        </button>
+                    <a href="{{ route('login.facebook') }}" class="btn btn-facebook">
+                        	<em class="fa fa-facebook">&nbsp;</em>facebook
                     </a>
-                    <a href="{{ route('login.github') }}">
-                        <button type="button" class="btn btn-github">
-                        	<em class="fa fa-github"></em>github
-                        </button>
+                    <a href="{{ route('login.github') }}" class="btn btn-github">
+                        	<em class="fa fa-github">&nbsp;</em>github
                     </a>
                 </div>
             </div>

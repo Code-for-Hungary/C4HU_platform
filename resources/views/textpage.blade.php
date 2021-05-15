@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div>
+<div id="textpageForm">
         <div>
             <div class="pageBody">
             <?php include $fname; ?>

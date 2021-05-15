@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div>
+<div id="emailForm">
             <div class="pageBody max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="emailForm">
                 	<h2>{{ __('email.sendEmail') }}</h2>
